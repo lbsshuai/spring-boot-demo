@@ -27,7 +27,7 @@ public class MyFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		HttpServletRequest hrequest = (HttpServletRequest) request;
-		System.out.println("过滤器this is MyFilter.url" + hrequest.getRequestURL());
+		//System.out.println("过滤器this is MyFilter.url" + hrequest.getRequestURL());
 		chain.doFilter(request, response);
 	}
 
