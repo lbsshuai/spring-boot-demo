@@ -37,11 +37,16 @@
 
         <!--table是指定每个表的生成策略-->
         
-        <!-- 用户表 -->
-        <table tableName="tbl_sys_user" domainObjectName="TblSysUser">
+         <!-- 爱好表 -->
+        <table tableName="sys_user_love" domainObjectName="SysUserLove">
             <property name="userActualColumnNames" value="false"/>
             <property name="ignoreQualifiersAtRuntime" value="true"/>
         </table>
-
+        
+        <!-- 用户表 -->
+        <!-- <table tableName="tbl_sys_user" domainObjectName="TblSysUser">
+            <property name="userActualColumnNames" value="false"/>
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+        </table> -->
     </context>
 </generatorConfiguration>

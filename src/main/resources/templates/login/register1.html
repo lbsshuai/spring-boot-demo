@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/jquery-easyui-1.6.4/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<script th:inline="javascript">
+	var contextPath = 'http://localhost:8080';
+</script>
+<body>
+<form action="">
+	<table>
+		<tr>
+			<td>用户名:</td>
+			<td>
+				<input id="user" type="text" name="user" placeholder="登录名">
+			</td>
+		</tr>
+		<tr>
+			<td>登录密码:</td>
+			<td>
+				<input id="password" type="password" name="pw" placeholder="请输入不少于6位密码">
+			</td>
+		</tr>
+		<tr>
+			<td>确认密码：</td>
+			<td>
+				<input id="passwordt" type="password" name="pwt" placeholder="请再次输入密码">
+			<td>
+		</tr>
+		<tr>
+			<td>性别：</td>
+			<td>
+				<input type="radio" name="sex" id="man1" value="1" checked="checked">
+				<label for="man1">男</label>
+				<input type="radio" name="sex" id="man2" value="0">
+				<label for="man2">女</label>
+			</td>
+		</tr>
+		<tr>
+			<td>爱好：</td>
+			<td>
+				<input id="a1" type="checkbox" name="love" value="a" checked="checked">
+				<label for="a1">蔬菜</label>
+				<input id="b1" type="checkbox" name="love" value="b">
+				<label for="b1">肉类</label>
+				<input id="c1" type="checkbox" name="love" value="c">
+				<label for="c1">海鲜</label>
+			</td>
+		</tr>
+		<tr>
+			<td>民族：</td>
+			<td>
+				<select name="nation">
+					<option value="1" selected="selected">汉族</option>
+					<option value="2">满族</option>
+					<option value="3">壮族</option>
+					<option value="4">回族</option>
+					<option value="5">哈萨克族</option>
+					<option value="6">朝鲜族</option>
+				</select>
+			</td>
+		</tr>
+		
+		<tr>
+			<td><input type="reset"></td>
+			<td><input type="button" onclick='register()' value='注册'></td>
+		</tr>
+	</table>
+</form>
+
+
+<script type="text/javascript" th:src="@{/js/login/register.js}"></script>
+<script type="text/javascript" th:src="@{/js/common/common.js}"></script>
+</body>
+</html>

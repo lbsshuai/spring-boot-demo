@@ -1,5 +1,8 @@
 package com.example.demo.service;
 
+import java.util.List;
+
+import com.example.demo.dao.exception.MyException;
 import com.example.demo.dao.model.TblSysUser;
 
 /**
@@ -9,5 +12,8 @@ import com.example.demo.dao.model.TblSysUser;
  */
 public interface ILoginService {
 
-	void insert(TblSysUser user);
+	/**
+	 * 注册
+	 */
+	void signIn(TblSysUser user)throws MyException;
 }

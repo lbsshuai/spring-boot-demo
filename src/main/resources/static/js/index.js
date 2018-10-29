@@ -12,7 +12,7 @@ $(function() {
 });
 
 function init() {
-	addNewTab("优选产品", "localhost:8080/hello");
+	addNewTab("优选产品", "localhost:8080/home");
 }
 
 
@@ -20,12 +20,7 @@ function init() {
  * 事件初始化
  */
 function eventInit() {
-	/*$('#vegetables').accordion({
-		select:function('vegetables',index){
-			addNewTab('百度','www.baidu.com');
-			console.log(1111111111111);
-		}
-	});*/
+
 }
 
 function addNewTab(tabname, url) {
