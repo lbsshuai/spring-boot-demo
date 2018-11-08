@@ -1,7 +1,5 @@
 package com.example.demo.service;
 
-import java.util.List;
-
 import com.example.demo.dao.exception.MyException;
 import com.example.demo.dao.model.TblSysUser;
 

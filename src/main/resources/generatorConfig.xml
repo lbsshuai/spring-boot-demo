@@ -10,7 +10,7 @@
         </commentGenerator>
         <!--需要配置数据库连接-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/lbs?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"
+                        connectionURL="jdbc:mysql://localhost:3306/xiaoma?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"
                         userId="root"
                         password="root">
         </jdbcConnection>
@@ -20,33 +20,33 @@
         </javaTypeResolver>
 
         <!--指定javaBean生成的位置 javaBean生成的位置-->
-        <javaModelGenerator targetPackage="com.example.demo.dao.model" targetProject="demo/src/main/java">
+        <javaModelGenerator targetPackage="com.example.demo.dao.model" targetProject="D:/ideaProjectTest/spring-boot-demo/src/main/java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
         <!--sql映射文件生成的位置-->
-        <sqlMapGenerator targetPackage="com.example.demo.dao.mapping"  targetProject="demo/src/main/resources">
+        <sqlMapGenerator targetPackage="com.example.demo.dao.mapping"  targetProject="D:/ideaProjectTest/spring-boot-demo/src/main/resources">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
         <!--指定dao接口生成的位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.demo.dao.mapper"  targetProject="demo/src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.demo.dao.mapper"  targetProject="D:/ideaProjectTest/spring-boot-demo/src/main/java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
         <!--table是指定每个表的生成策略-->
         
          <!-- 爱好表 -->
-        <table tableName="sys_user_love" domainObjectName="SysUserLove">
+        <!--<table tableName="sys_user_love" domainObjectName="SysUserLove">
             <property name="userActualColumnNames" value="false"/>
             <property name="ignoreQualifiersAtRuntime" value="true"/>
         </table>
-        
+        -->
         <!-- 用户表 -->
-        <!-- <table tableName="tbl_sys_user" domainObjectName="TblSysUser">
+         <table tableName="tbl_sys_user" domainObjectName="TblSysUser">
             <property name="userActualColumnNames" value="false"/>
             <property name="ignoreQualifiersAtRuntime" value="true"/>
-        </table> -->
+        </table>
     </context>
 </generatorConfiguration>

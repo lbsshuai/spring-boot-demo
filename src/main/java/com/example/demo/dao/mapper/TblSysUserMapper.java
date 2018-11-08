@@ -2,7 +2,6 @@ package com.example.demo.dao.mapper;
 
 import com.example.demo.dao.model.TblSysUser;
 import com.example.demo.dao.model.TblSysUserExample;
-
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -28,11 +27,10 @@ public interface TblSysUserMapper {
     int updateByPrimaryKeySelective(TblSysUser record);
 
     int updateByPrimaryKey(TblSysUser record);
-    
+
     //插入数据
     void signIn(TblSysUser record);
-    
+
     //获取用户表主键id
     int queryId();
-    
 }

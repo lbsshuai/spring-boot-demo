@@ -1,7 +1,5 @@
 package com.example.demo.dao.model;
 
-import java.util.Date;
-
 public class TblSysUser {
     private Integer id;
 
@@ -15,7 +13,7 @@ public class TblSysUser {
 
     private String createUser;
 
-    private Date createTime;
+    private String createTime;
 
     private String isDelete;
 
@@ -67,12 +65,12 @@ public class TblSysUser {
         this.createUser = createUser == null ? null : createUser.trim();
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime == null ? null : createTime.trim();
     }
 
     public String getIsDelete() {

@@ -1,7 +1,6 @@
 package com.example.demo.service.impl;
 
-import java.util.List;
-
+import com.example.demo.dao.model.TblSysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -9,11 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.dao.exception.MyException;
 import com.example.demo.dao.login.LoginDao;
-import com.example.demo.dao.model.SysUserLove;
-import com.example.demo.dao.model.TblSysUser;
 import com.example.demo.service.ILoginService;
-
-import ch.qos.logback.classic.Logger;
 
 /**
  * 登录业务逻辑层
