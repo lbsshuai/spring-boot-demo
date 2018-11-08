@@ -1,4 +1,5 @@
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -9,9 +10,11 @@
 <link href="Hplus-v.4.1.0/css/animate.css" rel="stylesheet">
 <link href="Hplus-v.4.1.0/css/style.css" rel="stylesheet">
 <link href="Hplus-v.4.1.0/css/login.css" rel="stylesheet">
+<script src="js/jquery-easyui-1.6.4/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+
 <!--[if lt IE 9]>
-    <meta http-equiv="refresh" content="0;ie.html" />
-    <![endif]-->
+<meta http-equiv="refresh" content="0;ie.html" />
+<![endif]-->
 <script>
 	if (window.top !== window.self) {
 		window.top.location = window.location;
@@ -43,13 +46,13 @@
 				</div>
 			</div>
 			<div class="col-sm-5">
-				<form method="post" action="index.html">
+				<form method="post">
 					<h4 class="no-margins">登录：</h4>
 					<p class="m-t-md">登录到H+后台主题UI框架</p>
-					<input type="text" class="form-control uname" placeholder="用户名"> 
-					<input type="password" class="form-control pword m-b" placeholder="密码"> 
+					<input id="name" type="text" class="form-control uname" placeholder="用户名">
+					<input id="password" type="password" class="form-control pword m-b" placeholder="密码">
 					<a href="">忘记密码了？</a>
-					<button class="btn btn-success btn-block">登录</button>
+					<button type="button" class="btn btn-success btn-block" onclick="loginIn()">登录</button>
 				</form>
 			</div>
 		</div>
@@ -59,4 +62,10 @@
 	</div>
 
 </body>
+<!-- 全局js -->
+<script src="Hplus-v.4.1.0/js/jquery.min.js?v=2.1.4"></script>
+<script src="Hplus-v.4.1.0/js/bootstrap.min.js?v=3.3.6"></script>
+
+<script type="text/javascript" th:src="@{/js/login/login.js}"></script>
+<script type="text/javascript" th:src="@{/js/constants.js}"></script>
 </html>

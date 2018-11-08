@@ -20,7 +20,20 @@ public class LoginService implements ILoginService {
 
 	@Autowired
 	private LoginDao loginDao;
-	
+
+	/**
+	 * 登录
+	 * @param name
+	 * @param password
+	 */
+	@Override
+	public void loginIn(String name, String password) throws MyException{
+		TblSysUser tblSysUser = loginDao.loginIn(name, password);
+		if(tblSysUser == null) {
+			throw new MyException("用户名或密码错误");
+		}
+	}
+
 	/**
 	 * 注册
 	 */
@@ -28,9 +41,15 @@ public class LoginService implements ILoginService {
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
 	public void signIn(TblSysUser user) throws MyException{
 		if(user == null) {
-			//TODO 返回错误信息
+			throw new MyException("账号或密码为空，请填写！");
 		}
-		
+
+		//校验数据唯一性
+		TblSysUser tblSysUser = loginDao.checkName(user.getName());
+		if(tblSysUser != null){
+			throw new MyException("账号名已存在，请换一个！");
+		}
+
 		//用户表插入数据
 		loginDao.signIn(user);
 		

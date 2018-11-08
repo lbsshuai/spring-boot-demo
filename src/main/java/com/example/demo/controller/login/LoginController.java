@@ -11,14 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.example.demo.dao.model.TblSysUser;
+import com.fasterxml.jackson.databind.deser.impl.NullsAsEmptyProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.controller.common.NeoProperties;
@@ -82,17 +80,43 @@ public class LoginController {
 	}
  	
 	/**
-	 * 欢迎页
+	 * 登录服务
+	 * @param request
+	 * @param response
+	 * @param name
+	 * @param password
 	 * @return
 	 */
-	@RequestMapping("/hello")
-	public String hello() {
-		logger.info("进入欢迎页面");
-		
-		logger.info("访问结束,欢迎再来");
-		return VIEW_PREFIX + "login";
+	@RequestMapping(value = "/loginIn", method = RequestMethod.POST)
+	@ResponseBody
+	public JsonResult loginIn(HttpServletRequest request, HttpServletResponse response,
+							  @RequestParam(value = "name") String name,
+							  @RequestParam(value = "password") String password){
+		logger.info("登录参数：name：" + name + "|||password:" + password);
+		JsonResult jsonResult = new JsonResult();
+		jsonResult.setFlag("success");
+
+		try {
+			loginService.loginIn(name, password);
+		} catch (Exception e) {
+			if(e instanceof MyException){
+				jsonResult.setMessage(e.getMessage());
+			}else {
+				jsonResult.setMessage("登录失败");
+			}
+			jsonResult.setFlag("fail");
+		}
+
+		return jsonResult;
 	}
-	
+
+	/**
+	 * 注册服务
+	 * @param request
+	 * @param response
+	 * @param user
+	 * @return
+	 */
 	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/signIn", method = RequestMethod.POST)
 	@ResponseBody

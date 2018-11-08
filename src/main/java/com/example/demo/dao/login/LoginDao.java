@@ -15,7 +15,23 @@ public class LoginDao {
 
 	@Autowired
 	private TblSysUserMapper tblSysUserMapper;
-	
+
+	/**
+	 * 登录
+	 * @param name
+	 * @param password
+	 * @return
+	 */
+	public TblSysUser loginIn(String name, String password){
+		return tblSysUserMapper.loginIn(name, password);
+	}
+	/**
+	 * 校验账号唯一性
+	 * @param name
+	 */
+	public TblSysUser checkName(String name){
+		return tblSysUserMapper.checkName(name);
+	}
 	/**
 	 * 注册用户信息
 	 * @param user

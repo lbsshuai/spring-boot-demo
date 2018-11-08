@@ -28,6 +28,12 @@ public interface TblSysUserMapper {
 
     int updateByPrimaryKey(TblSysUser record);
 
+    //登录
+    TblSysUser loginIn(@Param("name") String name, @Param("password") String password);
+
+    //校验账号唯一性
+    TblSysUser checkName(String name);
+
     //插入数据
     void signIn(TblSysUser record);
 

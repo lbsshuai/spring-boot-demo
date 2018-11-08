@@ -11,7 +11,16 @@ import com.example.demo.dao.model.TblSysUser;
 public interface ILoginService {
 
 	/**
+	 * 登录
+	 * @param name
+	 * @param password
+	 */
+	void loginIn(String name, String password) throws MyException;
+
+	/**
 	 * 注册
 	 */
 	void signIn(TblSysUser user)throws MyException;
+
+
 }
