@@ -1,5 +1,5 @@
 // 定义变量
-
+var name = "";
 
 
 //初始化
@@ -12,8 +12,14 @@ $(function() {
 });
 
 function init() {
-	addNewTab("优选产品", "localhost:8080/home");
+	//首页显示
+	addNewTab("优选产品", contextPath + "home");
+    getUser();
 }
+
+/**
+ *
+ */
 
 
 /**
@@ -23,6 +29,20 @@ function eventInit() {
 
 }
 
+/**
+ * 获取用户信息
+ */
+function getUser() {
+	var cookie = getCookie(userName);
+	name = cookie.split("#")[0];
+	$("#aName").html(name);
+}
+
+/**
+ * 增加窗口
+ * @param tabname 窗口标题
+ * @param url 跳转地址
+ */
 function addNewTab(tabname, url) {
 	var index = $('#mainTabs').tabs('getTabIndex', $('#mainTabs').tabs('getSelected'));
 	//关掉上一个
@@ -36,7 +56,7 @@ function addNewTab(tabname, url) {
 			title: tabname,
 			selected: true,
 			closable: true,
-			content: "<iframe src='" + 'http://' + url + "' style='width:100%;height:100%'  frameborder='no' border='0' marginwidth='0' marginheight='0' scrolling='yes' />"
+			content: "<iframe src='" + url + "' style='width:100%;height:100%'  frameborder='no' border='0' marginwidth='0' marginheight='0' scrolling='yes' />"
 		});
 	} else {
 		$('#mainTabs').tabs('select', tabname);

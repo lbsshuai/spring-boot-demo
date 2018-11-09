@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -91,14 +92,16 @@ public class LoginController {
 	@ResponseBody
 	public JsonResult loginIn(HttpServletRequest request, HttpServletResponse response,
 							  @RequestParam(value = "name") String name,
-							  @RequestParam(value = "password") String password){
+							  @RequestParam(value = "password") String password,
+							  @RequestParam(value = "rememberMe") String rememberMe){
 		logger.info("登录参数：name：" + name + "|||password:" + password);
 		JsonResult jsonResult = new JsonResult();
 		jsonResult.setFlag("success");
 
 		try {
-			loginService.loginIn(name, password);
+			loginService.loginIn(name, password, rememberMe, response);
 		} catch (Exception e) {
+			logger.error(e.getMessage());
 			if(e instanceof MyException){
 				jsonResult.setMessage(e.getMessage());
 			}else {

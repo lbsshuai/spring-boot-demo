@@ -1,71 +1,96 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-<title>小马生鲜商城 - 登录</title>
-<link href="Hplus-v.4.1.0/css/bootstrap.min.css" rel="stylesheet">
-<link href="Hplus-v.4.1.0/css/font-awesome.css?v=4.4.0" rel="stylesheet">
-<link href="Hplus-v.4.1.0/css/animate.css" rel="stylesheet">
-<link href="Hplus-v.4.1.0/css/style.css" rel="stylesheet">
-<link href="Hplus-v.4.1.0/css/login.css" rel="stylesheet">
-<script src="js/jquery-easyui-1.6.4/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <title>小马生鲜商城 - 登录</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="Hplus-v.4.1.0/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="Hplus-v.4.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="Hplus-v.4.1.0/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="Hplus-v.4.1.0/css/animate.css" rel="stylesheet">
+    <link href="Hplus-v.4.1.0/css/style.css" rel="stylesheet">
+    <link href="Hplus-v.4.1.0/css/login.css" rel="stylesheet">
+    <script src="js/jquery-easyui-1.6.4/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 
-<!--[if lt IE 9]>
-<meta http-equiv="refresh" content="0;ie.html" />
-<![endif]-->
-<script>
-	if (window.top !== window.self) {
-		window.top.location = window.location;
-	}
-</script>
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html"/>
+    <![endif]-->
+    <script>
+        if (window.top !== window.self) {
+            window.top.location = window.location;
+        }
+    </script>
 
 </head>
 
 <body class="signin">
-	<div class="signinpanel">
-		<div class="row">
-			<div class="col-sm-7">
-				<div class="signin-info">
-					<div class="logopanel m-b">
-						<h1>[ H+ ]</h1>
-					</div>
-					<div class="m-b"></div>
-					<h4>
-						欢迎使用 <strong>H+ 后台主题UI框架</strong>
-					</h4>
-					<ul class="m-b">
-						<li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势一</li>
-						<li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势二</li>
-						<li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势三</li>
-						<li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势四</li>
-						<li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势五</li>
-					</ul>
-					<strong>还没有账号？ <a href="http://localhost:8080/register">立即注册»</a></strong>
-				</div>
-			</div>
-			<div class="col-sm-5">
-				<form method="post">
-					<h4 class="no-margins">登录：</h4>
-					<p class="m-t-md">登录到H+后台主题UI框架</p>
-					<input id="name" type="text" class="form-control uname" placeholder="用户名">
-					<input id="password" type="password" class="form-control pword m-b" placeholder="密码">
-					<a href="">忘记密码了？</a>
-					<button type="button" class="btn btn-success btn-block" onclick="loginIn()">登录</button>
-				</form>
-			</div>
-		</div>
-		<div class="signup-footer">
-			<div class="pull-left">© 2015 All Rights Reserved. H+</div>
-		</div>
-	</div>
+<div class="signinpanel">
+    <div class="row">
+        <div class="col-sm-7">
+            <div class="signin-info">
+                <div class="logopanel m-b">
+                    <h1>[ H+ ]</h1>
+                </div>
+                <div class="m-b"></div>
+                <h4>
+                    欢迎使用 <strong>H+ 后台主题UI框架</strong>
+                </h4>
+                <ul class="m-b">
+                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势一</li>
+                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势二</li>
+                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势三</li>
+                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势四</li>
+                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势五</li>
+                </ul>
+                <strong>还没有账号？ <a href="http://localhost:8800/register">立即注册»</a></strong>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <form method="post">
+                <h4 class="no-margins">登录：</h4>
+                <p class="m-t-md">登录到H+后台主题UI框架</p>
+                <input id="name" type="text" class="form-control uname" placeholder="用户名">
+                <input id="password" type="password" class="form-control pword m-b" placeholder="密码">
+                <div class="form-group text-left">
+                    <div class="checkbox i-checks">
+                        <label class="no-padding">
+                            <div class="icheckbox_square-green" style="position: relative;">
+                                <input type="checkbox" style="position: absolute; opacity: 0;">
+                                <ins class="iCheck-helper"
+                                     style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                            </div>
+                            <i></i> 记住密码
+                        </label>
+                    </div>
+                </div>
+                <a href="">忘记密码了？</a>
+                <button type="button" class="btn btn-success btn-block" onclick="loginIn()">登录</button>
+            </form>
+        </div>
+    </div>
+    <div class="signup-footer">
+        <div class="pull-left">© 2015 All Rights Reserved. H+</div>
+    </div>
+</div>
 
 </body>
+<script>
+    $(document).ready(function () {
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+    });
+</script>
 <!-- 全局js -->
 <script src="Hplus-v.4.1.0/js/jquery.min.js?v=2.1.4"></script>
 <script src="Hplus-v.4.1.0/js/bootstrap.min.js?v=3.3.6"></script>
+<!-- iCheck -->
+<script src="Hplus-v.4.1.0/js/plugins/iCheck/icheck.min.js"></script>
 
 <script type="text/javascript" th:src="@{/js/login/login.js}"></script>
 <script type="text/javascript" th:src="@{/js/constants.js}"></script>
+<script type="text/javascript" th:src="@{/js/common.js}"></script>
 </html>

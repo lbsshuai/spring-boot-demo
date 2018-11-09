@@ -3,6 +3,9 @@ package com.example.demo.service;
 import com.example.demo.dao.exception.MyException;
 import com.example.demo.dao.model.TblSysUser;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * 登录业务逻辑接口
  * @author lbs
@@ -15,7 +18,7 @@ public interface ILoginService {
 	 * @param name
 	 * @param password
 	 */
-	void loginIn(String name, String password) throws MyException;
+	void loginIn(String name, String password, String rememberMe, HttpServletResponse response) throws MyException;
 
 	/**
 	 * 注册

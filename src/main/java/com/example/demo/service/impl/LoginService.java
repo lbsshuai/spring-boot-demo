@@ -10,6 +10,9 @@ import com.example.demo.dao.exception.MyException;
 import com.example.demo.dao.login.LoginDao;
 import com.example.demo.service.ILoginService;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * 登录业务逻辑层
  * @author lbs
@@ -27,11 +30,26 @@ public class LoginService implements ILoginService {
 	 * @param password
 	 */
 	@Override
-	public void loginIn(String name, String password) throws MyException{
+	public void loginIn(String name, String password, String rememberMe, HttpServletResponse response) throws MyException{
 		TblSysUser tblSysUser = loginDao.loginIn(name, password);
 		if(tblSysUser == null) {
 			throw new MyException("用户名或密码错误");
 		}
+		//Cookie存入记住用户名
+		Cookie nameCookie = new Cookie("userName",tblSysUser.getName());
+		nameCookie.setPath("/");
+		response.addCookie(nameCookie);
+
+		//是否记住密码
+		if(rememberMe.equals("1")){
+			//通过Cookie实现记住密码
+			String loginInfo = tblSysUser.getName()+"#"+tblSysUser.getPassword();
+			Cookie userInfoCookie = new Cookie("userInfoCookie",loginInfo);
+			userInfoCookie.setMaxAge(120);
+			userInfoCookie.setPath("/");
+			response.addCookie(userInfoCookie);
+		}
+
 	}
 
 	/**

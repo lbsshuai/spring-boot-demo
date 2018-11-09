@@ -25,9 +25,9 @@
 			</div>
 			<div style="display:line-block;float:right;vertical-align:middle;text-align: center;">
 				<h3  style="display:line-block;">
-					<a href="http://localhost:8080/hello" style="margin-right:30px;">购物车</a>
-					<span style="margin-right:30px;">欢迎您： XXX </span>
-					<a href="http://localhost:8080/hello">退出</a>
+					<a href="http://localhost:8800/home" style="margin-right:30px;">购物车</a>
+					<span style="margin-right:30px;">欢迎您:<span id="aName"></span> </span>
+					<a href="http://localhost:8800/home">退出</a>
 				</h3>
 			</div>
 		</div>
@@ -43,30 +43,30 @@
 					<div id="vegetables" title="蔬菜" data-options="iconCls:'icon-vegetables'" style="overflow: auto; padding: 10px;">
 						<div onclick="addNewTab('蔬菜-花叶菜类','www.baidu.com')"><img src="images/vegetables/花叶菜.png" /> <span onclick="addNewTab('蔬菜','www.baidu.com')">花叶菜类</span></div>
 						<p onclick="addNewTab('蔬菜-瓜果类','www.jeasyui.net/tutorial/')"><img src="images/vegetables/瓜果类.png" /> <span>瓜果类</span></p>
-						<p onclick="addNewTab('蔬菜-根茎类','localhost:8080/hello')"><img src="images/vegetables/根茎类.png" /> <span>根茎类</span></p>
+						<p onclick="addNewTab('蔬菜-根茎类','localhost:8800/home')"><img src="images/vegetables/根茎类.png" /> <span>根茎类</span></p>
 						<p onclick="addNewTab('蔬菜-菌菇类','xxx.xxxController')"><img src="images/vegetables/菌菇类.png" /> <span>菌菇类</span></p>
 						<p onclick="addNewTab('蔬菜-调味蔬菜类','xxx.xxx.jsp')"><img src="images/vegetables/调味蔬菜类.png" /> <span>调味蔬菜类</span></p>
 					</div>
 					<div title="水果" data-options="iconCls:'icon-fruits'" style="padding: 10px;">
-						<p onclick="addNewTab('水果-浆果类','localhost:8080/hello')"><img src="images/fruits/浆果类.png" /> <span>浆果类</span></p>
+						<p onclick="addNewTab('水果-浆果类','localhost:8800/home')"><img src="images/fruits/浆果类.png" /> <span>浆果类</span></p>
 						<p onclick="addNewTab('水果-柑橘类','xxx.xxxController')"><img src="images/fruits/柑橘类.png" /> <span>柑橘类</span></p>
 						<p onclick="addNewTab('水果-葡萄','xxx.xxx.jsp')"><img src="images/fruits/葡萄.png" /> <span>葡萄</span></p>
 						<p onclick="addNewTab('水果-核果','www.baidu.com')"><img src="images/fruits/核果.png" /> <span>核果</span></p>
 						<p onclick="addNewTab('水果-仁果','www.jeasyui.net/tutorial/')"><img src="images/fruits/仁果.png" /> <span>仁果</span></p>
-						<p onclick="addNewTab('水果-瓜类','localhost:8080/hello')"><img src="images/fruits/瓜类.png" /> <span>瓜类</span></p>
+						<p onclick="addNewTab('水果-瓜类','localhost:8800/home')"><img src="images/fruits/瓜类.png" /> <span>瓜类</span></p>
 					</div>
 					<div title="肉类" data-options="iconCls:'icon-meat'" style="padding: 10px;">
-						<p onclick="addNewTab('肉类-红肉','localhost:8080/hello')"><img src="images/meat/红肉.png" /> <span>红肉</span></p>
+						<p onclick="addNewTab('肉类-红肉','localhost:8800/home')"><img src="images/meat/红肉.png" /> <span>红肉</span></p>
 						<p onclick="addNewTab('肉类-白肉','xxx.xxxController')"><img src="images/meat/白肉.png" /> <span>白肉</span></p>
 						<p onclick="addNewTab('肉类-加工肉类','xxx.xxx.jsp')"><img src="images/meat/加工肉类.png" /> <span>加工肉类</span></p>
 					</div>
 					<div title="海鲜" data-options="iconCls:'icon-seafoot'" style="padding: 10px;">
-						<p onclick="addNewTab('海鲜-鱼类','localhost:8080/hello')"><img src="images/seafoot/鱼类.png" /> <span>鱼类 </span></p>
+						<p onclick="addNewTab('海鲜-鱼类','localhost:8800/home')"><img src="images/seafoot/鱼类.png" /> <span>鱼类 </span></p>
 						<p onclick="addNewTab('海鲜-贝类','xxx.xxx.jsp')"><img src="images/seafoot/贝类.png" /> <span>贝类</span></p>
 						<p onclick="addNewTab('海鲜-虾类','www.baidu.com')"><img src="images/seafoot/虾类.png" /> <span>虾类</span></p>
 					</div>
 					<div title="主食" data-options="iconCls:'icon-pasta'" style="padding: 10px;">
-						<p onclick="addNewTab('主食-饭粥类','localhost:8080/hello')"><img src="images/pasta/饭粥类.png" /> <span>饭粥类</span></p>
+						<p onclick="addNewTab('主食-饭粥类','localhost:8800/home')"><img src="images/pasta/饭粥类.png" /> <span>饭粥类</span></p>
 						<p onclick="addNewTab('主食-面条类','xxx.xxxController')"><img src="images/pasta/面条类.png" /> <span>面条类</span></p>
 						<p onclick="addNewTab('主食-馒头花卷类','xxx.xxx.jsp')"><img src="images/pasta/馒头花卷类.png" /> <span>馒头花卷类</span></p>
 					</div>
@@ -85,6 +85,8 @@
 		</div>
 
 	</div>
-	<script type="text/javascript" th:src="@{/js/index.js}"></script>
+<script type="text/javascript" th:src="@{/js/index.js}"></script>
+<script type="text/javascript" th:src="@{/js/constants.js}"></script>
+<script type="text/javascript" th:src="@{/js/common.js}"></script>
 </body>
 </html>
