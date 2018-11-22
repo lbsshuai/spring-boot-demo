@@ -10,6 +10,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.example.demo.dao.model.TblSysUser;
 import com.fasterxml.jackson.databind.deser.impl.NullsAsEmptyProvider;
@@ -52,7 +53,7 @@ public class LoginController {
 		mav.setViewName("index");
 		return mav;
 	}
-	
+
 	/**
 	 * 进入优选商品首页
 	 * @return
@@ -79,6 +80,15 @@ public class LoginController {
 	public String register() {
 		return VIEW_PREFIX + "register";
 	}
+
+	/**
+	 * 邮件页面
+	 * @return
+	 */
+	@RequestMapping(value = "/email", method = RequestMethod.GET)
+	public String email() {
+		return "email";
+	}
  	
 	/**
 	 * 登录服务
@@ -100,6 +110,12 @@ public class LoginController {
 
 		try {
 			loginService.loginIn(name, password, rememberMe, response);
+			//使用Session记住用户名
+			HttpSession session = request.getSession();
+			session.setAttribute("userName", name);
+			session.setMaxInactiveInterval(120);
+
+
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			if(e instanceof MyException){

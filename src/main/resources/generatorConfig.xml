@@ -44,7 +44,12 @@
         </table>
         -->
         <!-- 用户表 -->
-         <table tableName="tbl_sys_user" domainObjectName="TblSysUser">
+         <!--<table tableName="tbl_sys_user" domainObjectName="TblSysUser">
+            <property name="userActualColumnNames" value="false"/>
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+        </table>-->
+        <!-- 鞋子信息表 -->
+        <table tableName="shoe_info" domainObjectName="ShoeInfo">
             <property name="userActualColumnNames" value="false"/>
             <property name="ignoreQualifiersAtRuntime" value="true"/>
         </table>

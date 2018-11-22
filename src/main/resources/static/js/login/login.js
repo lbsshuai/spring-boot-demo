@@ -78,17 +78,14 @@ function loginIn() {
         data: param,
         success: function (data) {
             if (data.flag == 'success') {
-                setTimeout(function () {
-                    alert("登录成功")
-                },1000)
+                alert("登录成功");
             } else {
-                setTimeout(function () {
-                    alert(data.message);
-                },1000)
+                alert(data.message);
                 return;
             }
+            window.location.href = contextPath + "cpts/index.html";
             //跳转VUE页面
-            window.location.href = vueContextPath + "index";
+            //window.location.href = vueContextPath + "index";
         }
     });
 }

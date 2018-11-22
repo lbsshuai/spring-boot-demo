@@ -33,9 +33,12 @@ function eventInit() {
  * 获取用户信息
  */
 function getUser() {
+	//Cookie 获取用户名
 	var cookie = getCookie(userName);
-	name = cookie.split("#")[0];
+    name = cookie.split("#")[0];
+
 	$("#aName").html(name);
+
 }
 
 /**
