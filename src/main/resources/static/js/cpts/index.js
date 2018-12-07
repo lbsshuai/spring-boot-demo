@@ -33,7 +33,7 @@ function init() {
                     shoeInfo = shoeInfo + '<div class="col-md-3 product-left">'+
                         '<div class="p-one simpleCart_shelfItem">'+
                         '<a href="/cpts/single.html?id='+ id +'">'+
-                        '<img src="/cpts/images/'+ img +'" alt="" />'+
+                        '<img src="/cpts/images/shoe/Info'+ img +'" alt="" />'+
                         '<div class="mask">'+
                         '<span>Quick View</span>'+
                         '</div></a>'+

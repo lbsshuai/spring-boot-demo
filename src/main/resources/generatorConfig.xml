@@ -49,7 +49,12 @@
             <property name="ignoreQualifiersAtRuntime" value="true"/>
         </table>-->
         <!-- 鞋子信息表 -->
-        <table tableName="shoe_info" domainObjectName="ShoeInfo">
+        <!--<table tableName="shoe_info" domainObjectName="ShoeInfo">
+            <property name="userActualColumnNames" value="false"/>
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+        </table>-->
+        <!--商品详情表-->
+        <table tableName="single_info" domainObjectName="SingleInfo">
             <property name="userActualColumnNames" value="false"/>
             <property name="ignoreQualifiersAtRuntime" value="true"/>
         </table>
