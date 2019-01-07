@@ -39,4 +39,7 @@ public interface TblSysUserMapper {
 
     //获取用户表主键id
     int queryId();
+
+    //通过用户名获取用户信息
+    TblSysUser queryUserInfoByUserName(Object userName);
 }

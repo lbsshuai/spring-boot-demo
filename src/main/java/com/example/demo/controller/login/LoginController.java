@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.example.demo.dao.common.CommonConstant;
 import com.example.demo.dao.model.TblSysUser;
+import com.example.demo.dao.util.StringUtils;
 import com.fasterxml.jackson.databind.deser.impl.NullsAsEmptyProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,6 +73,14 @@ public class LoginController {
 	public String login() {
 		return VIEW_PREFIX + "login";
 	}
+	/*@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView login() {
+		ModelAndView mav = new ModelAndView();
+		//判断用户是否登录。登录调到用户购物车，并显示数据，
+		mav.addObject(1);
+		mav.setViewName("login/login");
+		return mav;
+	}*/
 	
 	/**
 	 * 注册页面
@@ -89,7 +99,23 @@ public class LoginController {
 	public String email() {
 		return "email";
 	}
- 	
+
+	/**
+	 * 获取登录用户名
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "getLoginUser", method = RequestMethod.GET)
+	@ResponseBody
+	public JsonResult getLoginUser(HttpServletRequest request, HttpServletResponse response){
+		HttpSession session = request.getSession();
+		Object attribute = session.getAttribute(CommonConstant.USER_NAME);
+		JsonResult jsonResult = new JsonResult();
+		jsonResult.setObject(attribute);
+		return jsonResult;
+	}
+
 	/**
 	 * 登录服务
 	 * @param request
@@ -112,9 +138,8 @@ public class LoginController {
 			loginService.loginIn(name, password, rememberMe, response);
 			//使用Session记住用户名
 			HttpSession session = request.getSession();
-			session.setAttribute("userName", name);
-			session.setMaxInactiveInterval(120);
-
+			session.setAttribute(CommonConstant.USER_NAME, name);
+			session.setMaxInactiveInterval(CommonConstant.MAX_TIME);
 
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -158,6 +183,27 @@ public class LoginController {
 		}
 		
 		return result;
+	}
+
+	/**
+	 * 退出登录
+	 * @param request
+	 */
+	@RequestMapping(value = "/loginout", method = RequestMethod.GET)
+	@ResponseBody
+	public JsonResult loginout(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		String attribute = (String)session.getAttribute(CommonConstant.USER_NAME);
+
+		JsonResult jsonResult = new JsonResult();
+
+		if(!StringUtils.isNotBlank(attribute)){
+			jsonResult.setFlag("000");
+			return jsonResult;
+		}
+		jsonResult.setFlag("111");
+		session.setAttribute(CommonConstant.USER_NAME, null);
+		return jsonResult;
 	}
 	
 	/**

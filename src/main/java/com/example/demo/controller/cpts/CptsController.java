@@ -1,12 +1,15 @@
 package com.example.demo.controller.cpts;
 
-import com.example.demo.controller.login.LoginController;
+import com.example.demo.dao.model.SingleInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 /**
  * @author lbs
@@ -64,6 +67,18 @@ public class CptsController {
         ModelAndView mav = new ModelAndView();
 
         mav.setViewName("cpts/account");
+        return mav;
+    }
+
+    /**
+     * 单品详情页
+     * @return
+     */
+    @RequestMapping(value = "/cpts/single.html", method = RequestMethod.GET)
+    public ModelAndView cptsSingle() {
+        logger.info("进入详情页");
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("cpts/single");
         return mav;
     }
 }

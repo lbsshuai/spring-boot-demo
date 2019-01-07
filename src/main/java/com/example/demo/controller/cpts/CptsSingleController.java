@@ -1,16 +1,22 @@
 package com.example.demo.controller.cpts;
 
+import com.example.demo.dao.common.CommonConstant;
+import com.example.demo.dao.model.ShoeInfo;
 import com.example.demo.dao.model.SingleInfo;
+import com.example.demo.dao.model.TblSysUser;
+import com.example.demo.dao.util.JsonResult;
+import com.example.demo.dao.util.StringUtils;
 import com.example.demo.service.impl.CptsSingleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -28,16 +34,40 @@ public class CptsSingleController {
     public static final Logger logger = LoggerFactory.getLogger(CptsSingleController.class);
 
     /**
-     * 单品详情页
+     * 通过鞋子Id 获取鞋子信息
+     * @param shoeId
      * @return
      */
-    @RequestMapping(value = "/cpts/single.html", method = RequestMethod.GET)
-    public ModelAndView cptsSingle(@RequestParam Integer id) {
-        logger.info("进入首页");
-        ModelAndView mav = new ModelAndView();
-        List<SingleInfo> singleInfos = cptsSingleService.queryById(id);
-        mav.addObject("singleInfo", singleInfos);
-        mav.setViewName("cpts/single");
-        return mav;
+    @RequestMapping(value = "/cpts/getImgById", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResult getImgById(@RequestParam("shoeId") Integer shoeId){
+        JsonResult jsonResult = new JsonResult();
+        ShoeInfo imgByShoeId = cptsSingleService.getImgByShoeId(shoeId);
+        jsonResult.setObject(imgByShoeId);
+        return jsonResult;
+    }
+
+
+    /**
+     * 验证用户是否登录
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/cpts/verifyLogin", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResult verifyLogin(HttpServletRequest request, HttpServletResponse response,
+                                  @RequestParam(value = "id") String id , @RequestParam(value = "num") String num){
+        logger.info("加入购物车 前提验证登录");
+        JsonResult jsonResult = new JsonResult();
+        //获取session
+        HttpSession session = request.getSession();
+        String attribute = (String) session.getAttribute(CommonConstant.USER_NAME);
+        if(StringUtils.isNotBlank(attribute)){
+            cptsSingleService.addToCart(id, attribute, num);
+        }
+
+        jsonResult.setObject(attribute);
+        return jsonResult;
     }
 }

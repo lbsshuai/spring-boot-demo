@@ -2,6 +2,7 @@ package com.example.demo.dao.cpts;
 
 import com.example.demo.dao.mapper.ShoeInfoMapper;
 import com.example.demo.dao.model.ShoeInfo;
+import com.example.demo.dao.util.PaginationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -19,6 +20,10 @@ public class CptsIndexDao {
 
     public List<ShoeInfo> queryAll(){
         return shoeInfoMapper.queryAll();
+    }
+
+    public List<ShoeInfo> queryShoeByPagination(PaginationUtil paginationUtil){
+        return shoeInfoMapper.queryShoeByPagination(paginationUtil);
     }
 
 }

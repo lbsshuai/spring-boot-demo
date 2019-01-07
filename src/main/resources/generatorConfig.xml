@@ -54,9 +54,9 @@
             <property name="ignoreQualifiersAtRuntime" value="true"/>
         </table>-->
         <!--商品详情表-->
-        <table tableName="single_info" domainObjectName="SingleInfo">
+       <!-- <table tableName="single_info" domainObjectName="SingleInfo">
             <property name="userActualColumnNames" value="false"/>
             <property name="ignoreQualifiersAtRuntime" value="true"/>
-        </table>
+        </table>-->
     </context>
 </generatorConfiguration>

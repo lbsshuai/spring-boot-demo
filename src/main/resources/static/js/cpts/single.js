@@ -2,6 +2,7 @@
  * 定义变量
  */
 var startSingleInfo = "";
+var id = null;
 
 /**
  * 初始化
@@ -9,32 +10,76 @@ var startSingleInfo = "";
 $(function () {
 
     init();
+    event();
 });
 
 function init() {
     startSingle();
 }
-
-function startSingle() {
-    for(var i = 1; i < 5; i++){
-        startSingleInfo += "<li data-thumb=\"images/singleInfo/s"+i+".jpg\">"+
-        "<img src=\"/cpts/images/singleInfo/s"+i+".jpg\" /></li>"
-    }
-    document.getElementById('startSingle').innerHTML = startSingleInfo;
+function event() {
+    $('#addToCart').click(function () {
+        addToCart();
+    })
+    $('#toCart').click(function () {
+        toCart();
+    })
 }
 
+/**
+ * 初始化详情图片
+ */
+function startSingle() {
 
+   /* for(var i = 1; i < 5; i++){
+        startSingleInfo += "<li data-thumb=\"images/singleInfo/s"+i+".jpg\">"+
+        "<img src=\"/cpts/images/singleInfo/s"+i+".jpg\" /></li>"
+    }*/
+    var localStorage = window.localStorage;
+    id = localStorage.getItem("id");
+    console.log(id)
+    var img = null;
+    var price = null;
+    $.ajax({
+        url: contextPath + "cpts/getImgById?shoeId="+ id,
+        type: "GET",
+        async:false,
+        success: function (data) {
+            var shoes = data.object;
+            img = shoes.img;
+            price = shoes.price;
+            $("#shoePrice").html("$"+price);
+            for(var i = 1; i < 5; i++){
+                startSingleInfo += "<li data-thumb=\"images/shoeInfo/"+img+"\">"+
+                    "<img src=\"/cpts/images/shoeInfo/"+img+"\" /></li>"
+            }
+            console.log(startSingleInfo)
+            document.getElementById('startSingle').innerHTML = startSingleInfo;
+        }
+    });
+}
 
+/**
+ * 加入购物车
+ */
+function addToCart(){
+    var localStorage = window.localStorage;
+    id = localStorage.getItem("id");
+    //获取商品数量
+    var num =  $("#numSelect").find("option:selected").text();
+    $.ajax({
+        url: contextPath + 'cpts/verifyLogin?id='+ id +"&num=" + num,
+        type: 'GET',
+        success: function (data) {
+            console.log(data);
+            if (data.object === null){
+                window.location.href =  contextPath + 'login';
+            }else {
+                alert("添加购物车成功！");
+            }
+        }
+    })
+}
 
-
-let app = new Vue({
-    el : '#app',
-    data: {
-        list:["s1.jpg", "s2.jpg", "s3.jpg", "s4.jpg"],
-        list1:["images/s1.jpg", "images/s2.jpg", "images/s3.jpg", "images/s4.jpg"],
-        list2:["/cpts/images/s1.jpg", "/cpts/images/s2.jpg", "/cpts/images/s3.jpg", "/cpts/images/s4.jpg"]
-    }
-});
-
-
-
+function toCart() {
+    window.location.href = contextPath + 'cpts/checkout.html';
+}

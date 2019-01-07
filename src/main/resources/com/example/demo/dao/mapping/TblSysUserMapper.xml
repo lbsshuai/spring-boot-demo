@@ -332,7 +332,14 @@
 
     <!-- 查找用户表主键id -->
     <select id="queryId" resultType="int">
-    select max(id) from tbl_sys_user
+    select max(id) from tbl_sys_user tsu
   </select>
 
+    <!-- 通过用户名获取用户信息 -->
+    <select id="queryUserInfoByUserName" parameterType="Object" resultType="com.example.demo.dao.model.TblSysUser">
+       select * from tbl_sys_user tsu
+        WHERE tsu.`name` = #{userName}
+        AND tsu.is_delete = 0
+
+    </select>
 </mapper>

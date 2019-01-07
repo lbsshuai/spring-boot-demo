@@ -197,4 +197,9 @@
   <select id="queryAll" resultType="com.example.demo.dao.model.ShoeInfo">
     select * FROM shoe_info
   </select>
+
+  <select id="queryShoeByPagination" resultType="com.example.demo.dao.model.ShoeInfo"
+    parameterType="com.example.demo.dao.util.PaginationUtil">
+    select * FROM shoe_info
+  </select>
 </mapper>

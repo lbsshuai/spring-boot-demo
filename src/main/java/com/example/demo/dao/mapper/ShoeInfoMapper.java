@@ -3,6 +3,8 @@ package com.example.demo.dao.mapper;
 import com.example.demo.dao.model.ShoeInfo;
 import com.example.demo.dao.model.ShoeInfoExample;
 import java.util.List;
+
+import com.example.demo.dao.util.PaginationUtil;
 import org.apache.ibatis.annotations.Param;
 
 public interface ShoeInfoMapper {
@@ -29,4 +31,6 @@ public interface ShoeInfoMapper {
     int updateByPrimaryKey(ShoeInfo record);
 
     List<ShoeInfo> queryAll();
+
+    List<ShoeInfo> queryShoeByPagination(PaginationUtil paginationUtil);
 }

@@ -34,3 +34,5 @@ function showAlert(title, message, iconType) {
 function showAlertFn(title, message, iconType, callback) {
 	$.messager.alert(title, message, iconType, callback);
 }
+
+

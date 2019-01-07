@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
 import com.example.demo.dao.model.ShoeInfo;
+import com.example.demo.dao.util.PaginationUtil;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -11,6 +13,7 @@ import java.util.List;
  */
 public interface ICptsIndexService {
 
-    List<ShoeInfo> queryAll();
+    PageInfo<ShoeInfo> queryAll(String pageNum, String pageSize);
 
+    PageInfo<ShoeInfo>  queryShoeByPagination(PaginationUtil paginationUtil);
 }
