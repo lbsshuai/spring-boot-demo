@@ -47,16 +47,31 @@ public class CptsSingleController {
         return jsonResult;
     }
 
+    @RequestMapping(value = "/cpts/verifyLogin", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResult verifyLogin(HttpServletRequest request, HttpServletResponse response){
+        logger.info("验证登录");
+        JsonResult jsonResult = new JsonResult();
+        //获取session
+        HttpSession session = request.getSession();
+        String attribute = (String) session.getAttribute(CommonConstant.USER_NAME);
+        if(StringUtils.isNotBlank(attribute)){
+            jsonResult.setObject(attribute);
+        }else {
+            jsonResult.setObject(null);
+        }
+        return jsonResult;
+    }
 
     /**
-     * 验证用户是否登录
+     * 验证用户是否登录后加入购物车
      * @param request
      * @param response
      * @return
      */
-    @RequestMapping(value = "/cpts/verifyLogin", method = RequestMethod.GET)
+    @RequestMapping(value = "/cpts/verifyLoginToCart", method = RequestMethod.GET)
     @ResponseBody
-    public JsonResult verifyLogin(HttpServletRequest request, HttpServletResponse response,
+    public JsonResult verifyLoginToCart(HttpServletRequest request, HttpServletResponse response,
                                   @RequestParam(value = "id") String id , @RequestParam(value = "num") String num){
         logger.info("加入购物车 前提验证登录");
         JsonResult jsonResult = new JsonResult();

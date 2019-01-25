@@ -11,7 +11,7 @@ public class CommonConstant {
 
     //用户登录存入session键值
     public static final String USER_NAME = "userName";
-    public static final Integer MAX_TIME = 6000;
+    public static final Integer MAX_TIME = 1800;
 
     //redis连接地址
     public static final String redisAddress = "106.12.5.165";

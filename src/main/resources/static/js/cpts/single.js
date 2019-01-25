@@ -23,6 +23,9 @@ function event() {
     $('#toCart').click(function () {
         toCart();
     })
+    $('#cart').click(function () {
+        toCart();
+    })
 }
 
 /**
@@ -67,7 +70,7 @@ function addToCart(){
     //获取商品数量
     var num =  $("#numSelect").find("option:selected").text();
     $.ajax({
-        url: contextPath + 'cpts/verifyLogin?id='+ id +"&num=" + num,
+        url: contextPath + 'cpts/verifyLoginToCart?id='+ id +"&num=" + num,
         type: 'GET',
         success: function (data) {
             console.log(data);
@@ -81,5 +84,17 @@ function addToCart(){
 }
 
 function toCart() {
-    window.location.href = contextPath + 'cpts/checkout.html';
+    //验证是否登录
+    $.ajax({
+        url: contextPath + "cpts/verifyLogin",
+        type: "GET",
+        success: function (data) {
+            var object = data.object;
+            if(object === null){
+                window.location.href = contextPath + 'login';
+            }else{
+                window.location.href = contextPath + 'cpts/checkout.html';
+            }
+        }
+    })
 }

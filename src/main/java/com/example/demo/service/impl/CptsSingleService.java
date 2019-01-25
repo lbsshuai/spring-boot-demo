@@ -40,12 +40,13 @@ public class CptsSingleService implements ICptsSingleService{
         TblSysUser tblSysUser = cptsSingleDao.queryUserInfo(userName);
         //存入购物车
         jedis.connect();
-        //判断商品是否存在
+        //判断购物车中商品是否存在
         Map<String, String> cartMap = jedis.hgetAll(userName);
         for(Map.Entry entry: cartMap.entrySet()){
             if(entry.getKey().equals(id)){
                 Integer numCart = Integer.parseInt((String) entry.getValue()) + Integer.parseInt(num);
                 jedis.hset(userName, id, numCart.toString());
+                jedis.expire(userName, 3600);
                 flag = true;
             }
         }

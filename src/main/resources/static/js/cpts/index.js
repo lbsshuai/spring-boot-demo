@@ -18,6 +18,10 @@ function event() {
     $("#loginout").click(function () {
         loginout();
     })
+    //购物车图标点击事件
+    $("#cart").click(function () {
+        toCart();
+    })
     //主页 用户登录名
     getLoginUser();
 }
@@ -92,5 +96,21 @@ function loginout() {
            }
         }
     });
+}
+
+function toCart() {
+    //验证是否登录
+    $.ajax({
+        url: contextPath + "cpts/verifyLogin",
+        type: "GET",
+        success: function (data) {
+            var object = data.object;
+            if(object === null){
+                window.location.href = contextPath + 'login';
+            }else{
+                window.location.href = contextPath + 'cpts/checkout.html';
+            }
+        }
+    })
 }
 

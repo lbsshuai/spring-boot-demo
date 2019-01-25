@@ -15,6 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 /**
@@ -38,8 +41,8 @@ public class CptsIndexController {
      */
     @RequestMapping(value = "shoeInfo", method = RequestMethod.GET)
     @ResponseBody
-    public JsonResult shoeInfo(HttpServletRequest request,
-            @RequestParam(value = "pageNum")String pageNum, @RequestParam("pageSize") String pageSize){
+    public JsonResult shoeInfo(HttpServletRequest request, HttpServletResponse response,
+            @RequestParam(value = "pageNum")String pageNum, @RequestParam("pageSize") String pageSize) throws IOException {
 
         logger.info("进入获取鞋子信息Controller层");
         JsonResult jsonResult = new JsonResult();
@@ -50,6 +53,10 @@ public class CptsIndexController {
 
         jsonResult.setFlag("success");
         jsonResult.setObject(pageInfo);
+
+     /*   response.setHeader("Content-type", "text/html;charset=UTF-8");
+        PrintWriter writer = response.getWriter();
+        writer.write("啊哈");*/
         return jsonResult;
     }
 }

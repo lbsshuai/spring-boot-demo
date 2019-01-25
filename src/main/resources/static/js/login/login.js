@@ -81,26 +81,14 @@ function loginIn() {
         success: function (data) {
             if (data.flag == 'success') {
                 /*alert("登录成功");*/
+                var localStorage = window.localStorage;
+                localStorage.setItem("loginUserName", param.name);
             } else {
                 alert(data.message);
                 return;
             }
             //跳转到鞋城主页面
             window.location.href = contextPath + "cpts/index.html";
-           /* var localStorage = window.localStorage;
-            id = localStorage.getItem("id");
-            console.log(id);
-            if(id === null){
-                //跳转到首页
-                window.location.href = contextPath + "cpts/index.html";
-            }else {
-                //跳转到鞋子详情页
-                window.location.href = contextPath + "cpts/single.html";
-            }*/
-
-            /*window.location.href = history.go(-1);*/
-            //跳转VUE页面
-            //window.location.href = vueContextPath + "index";
         }
     });
 }
