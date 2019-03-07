@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>导出excel文件</title>
+</head>
+<body>
+<table border="0" style="margin-top: 4px; margin-left: 18px">
+    <tr>
+        <td>
+            <a href="#" onclick="exportData5()">数据导出 五万</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="#" onclick="exportData10()">数据导出 十万</a>
+        </td>
+    </tr>
+</table>
+<form action="/cpts/readData" enctype="multipart/form-data" method="post">
+    <input type="file" name="file">
+    <input type="submit" value="提交">
+</form>
+
+
+
+</body>
+<script type="text/javascript" src="/js/cpts/export.js"></script>
+<script type="text/javascript" src="/js/constants.js"></script>
+</html>

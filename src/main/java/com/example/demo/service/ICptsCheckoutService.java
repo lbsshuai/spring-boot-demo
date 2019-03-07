@@ -11,4 +11,6 @@ import java.util.List;
 public interface ICptsCheckoutService {
 
     List<CartInfoVo> getCartInfo(String userName);
+
+    void deleteCartInfo(String id, String userName);
 }

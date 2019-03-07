@@ -47,4 +47,14 @@ public class CptsCheckoutService implements ICptsCheckoutService {
         }
         return list;
     }
+
+    /**
+     * 删除购物车中商品信息
+     * @param id
+     */
+    @Override
+    public void deleteCartInfo(String id, String userName) {
+        jedis.connect();
+        jedis.hdel(userName, id);
+    }
 }

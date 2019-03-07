@@ -2,7 +2,6 @@ package com.example.demo.controller.cpts;
 
 import com.example.demo.dao.util.JsonResult;
 import com.example.demo.dao.vo.CartInfoVo;
-import com.example.demo.service.ICptsCheckoutService;
 import com.example.demo.service.impl.CptsCheckoutService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +23,11 @@ public class CptsCheckoutController {
     @Autowired
     private CptsCheckoutService cptsCheckoutService;
 
+    /**
+     * 获取购物车中信息
+     * @param userName
+     * @return
+     */
     @RequestMapping(value = "cpts/getCartInfo", method = RequestMethod.GET)
     @ResponseBody
     public JsonResult getCartInfo(@RequestParam(value = "userName") String userName){
@@ -33,4 +37,16 @@ public class CptsCheckoutController {
         return jsonResult;
     }
 
+    /**
+     * 删除购物车中商品信息
+     * @param id
+     * @param userName
+     * @return
+     */
+    @RequestMapping(value = "cpts/delectCartInfo", method = RequestMethod.GET)
+    @ResponseBody
+    public void delectCartInfo(@RequestParam(value = "id") String id,
+                               @RequestParam(value = "userName") String userName){
+        cptsCheckoutService.deleteCartInfo(id, userName);
+    }
 }

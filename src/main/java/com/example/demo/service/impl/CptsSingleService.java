@@ -5,10 +5,8 @@ import com.example.demo.dao.cpts.CptsSingleDao;
 import com.example.demo.dao.model.ShoeInfo;
 import com.example.demo.dao.model.SingleInfo;
 import com.example.demo.dao.model.TblSysUser;
-import com.example.demo.dao.util.StringUtils;
 import com.example.demo.service.ICptsSingleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 

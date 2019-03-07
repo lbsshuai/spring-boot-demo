@@ -10,7 +10,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.example.demo.controller.interceptor.LoginInterceptor;
 
 @SpringBootApplication
-@Configuration
 @MapperScan(basePackages= {"com.example.demo.dao.mapper","com.example.demo.*.mapper"})
 public class DemoApplication implements WebMvcConfigurer{
 	

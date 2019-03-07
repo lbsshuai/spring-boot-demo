@@ -8,7 +8,6 @@ var id = null;
  * 初始化
  */
 $(function () {
-
     init();
     event();
 });
@@ -20,12 +19,16 @@ function event() {
     $('#addToCart').click(function () {
         addToCart();
     })
+    $('#back').click(function () {
+        back();
+    })
     $('#toCart').click(function () {
         toCart();
     })
     $('#cart').click(function () {
         toCart();
     })
+
 }
 
 /**
@@ -69,7 +72,7 @@ function addToCart(){
     id = localStorage.getItem("id");
     //获取商品数量
     var num =  $("#numSelect").find("option:selected").text();
-    $.ajax({
+        $.ajax({
         url: contextPath + 'cpts/verifyLoginToCart?id='+ id +"&num=" + num,
         type: 'GET',
         success: function (data) {
@@ -83,6 +86,12 @@ function addToCart(){
     })
 }
 
+//返回上一页
+function back() {
+    window.history.go(-1);
+}
+
+//进入购物车页面
 function toCart() {
     //验证是否登录
     $.ajax({

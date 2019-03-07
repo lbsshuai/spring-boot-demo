@@ -58,5 +58,15 @@
             <property name="userActualColumnNames" value="false"/>
             <property name="ignoreQualifiersAtRuntime" value="true"/>
         </table>-->
+        <!--订单信息-->
+        <!--<table tableName="consignee_info" domainObjectName="ConsigneeInfo">
+            <property name="userActualColumnNames" value="false"/>
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+        </table>-->
+        <!--数据导出表-->
+       <!-- <table tableName="export" domainObjectName="Export">
+            <property name="userActualColumnNames" value="false"/>
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+        </table>-->
     </context>
 </generatorConfiguration>

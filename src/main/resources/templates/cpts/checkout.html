@@ -346,24 +346,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li style="width: 15%;"><span>Unit Price</span></li>
 					<li style="width: 15%;"><span>Stock Status</span></li>
 					<li style="width: 15%;"><span>Product Num</span></li>
-					<li style="width: 15%;"> </li>
+					<li style="width: 15%;">Total Prices </li>
 					<div class="clearfix"> </div>
 				</ul>
-				<div>
-				<ul class="cart-header">
+				<div id="cartInfo">
+				<!--<ul class="cart-header">
 					<li  style="width: 15%;" class="ring-in">
                         <img src="/cpts/images/s-1.jpg" class="img-responsive">
 					</li>
 					<li style="width: 15%;"><span>Woo Dress</span></li>
 					<li style="width: 15%;"><span>$ 290.00</span></li>
 					<li style="width: 15%;"><span>In Stock</span></li>
-					<li style="width: 15%;">
-					<li style="width: 15%;">
-                        <div class="close1 close11"> </div>
-                    </li>
+					<li style="width: 15%;"><span>100</span></li>
+					<li style="width: 15%;"><div class="close1 close11"> </div></li>
 					<div class="clearfix"> </div>
-				</ul>
+				</ul>-->
 				</div>
+                <span class="order-submit">
+					<a id="backToHome">返回首页</a>
+				</span>
+				<span class="order-submit">
+					<a id="submitOrder">提交订单</a>
+				</span>
+                <span class="order-submit">
+                    <a id="backToPREV">返回上一页</a>
+				</span>
 			</div>
 			</div>
 		 </div>
@@ -425,8 +432,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="footer-text">
 		<div class="container">
 			<div class="footer-main">
-				<p class="footer-class">Copyright &copy; 2015.Company name All rights reserved.More Templates <a href="/cpts/http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="/cpts/http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
-			</div>
+                <p class="footer-class">Copyright &copy; 2019.Company name All rights reserved.More Shoes
+                    <a href="#" target="_blank" title="鞋城之家">鞋城之家</a>
+                </p>
+            </div>
 		</div>
 		<script type="text/javascript">
 									$(document).ready(function() {
@@ -459,5 +468,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         left:95%;
         right: 20px;
     }
+	.order-submit{
+		background: #8c2830;
+		color: #FFF;
+		font-size: 0.8em;
+		padding: 0.5em 1em;
+		transition: 0.5s all;
+		-webkit-transition: 0.5s all;
+		-moz-transition: 0.5s all;
+		-o-transition: 0.5s all;
+		cursor: pointer;
+		outline: none;
+		text-transform: uppercase;
+		border: none;
+	}
 </style>
 </html>

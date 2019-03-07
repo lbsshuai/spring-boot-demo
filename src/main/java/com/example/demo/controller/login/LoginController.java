@@ -7,7 +7,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import com.example.demo.dao.common.CommonConstant;
 import com.example.demo.dao.model.TblSysUser;
 import com.example.demo.dao.util.StringUtils;
-import com.fasterxml.jackson.databind.deser.impl.NullsAsEmptyProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +21,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.controller.common.NeoProperties;
 import com.example.demo.dao.exception.MyException;
 import com.example.demo.dao.util.JsonResult;
 import com.example.demo.service.ILoginService;
@@ -33,10 +30,7 @@ import com.octo.captcha.service.CaptchaServiceException;
 public class LoginController {
 
 	private static final String VIEW_PREFIX = "login/";
-	
-	@Autowired
-	private NeoProperties neo;
-	
+
 	@Autowired
 	private ILoginService loginService;
 	

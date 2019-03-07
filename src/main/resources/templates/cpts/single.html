@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Single</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -393,12 +393,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="clearfix"></div>
                             <div class="single-but item_add">
                                 <input id="addToCart" type="submit" value="add to cart"/>
+                                <input id="back" type="submit" value="back"/>
                                 <input id="toCart" type="submit" value="To cart"/>
                             </div>
                         </div>
                     </div>
                     <div class="clearfix"></div>
                 </div>
+                <!--/*@thymesVar id="yu" type="java"*/-->
+                <p th:text="${yu}"></p>
 <!--
                 <div class="latest products">
                     <div class="product-one">
@@ -581,9 +584,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="footer-text">
     <div class="container">
         <div class="footer-main">
-            <p class="footer-class">Copyright &copy; 2015.Company name All rights reserved.More Templates <a
-                    href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a
-                    href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+            <p class="footer-class">Copyright &copy; 2019.Company name All rights reserved.More Shoes
+                <a href="#" target="_blank" title="鞋城之家">鞋城之家</a>
+            </p>
         </div>
     </div>
     <script type="text/javascript">
