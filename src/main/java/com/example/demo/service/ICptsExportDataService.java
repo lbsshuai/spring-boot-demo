@@ -20,6 +20,7 @@ public interface ICptsExportDataService {
      */
     void exportData5(HttpServletResponse response)throws IOException;
     void exportData10(HttpServletResponse response)throws IOException;
+    void exportData100(HttpServletResponse response)throws IOException;
 
     List<String[]> readData(MultipartFile file) throws MyException, IOException;
 }

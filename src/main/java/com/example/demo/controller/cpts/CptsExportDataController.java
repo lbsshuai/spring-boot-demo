@@ -40,7 +40,7 @@ public class CptsExportDataController {
     }
 
     /**
-     * 导出excel 数据文件
+     * 导出excel 数据文件1
      * @param response
      * @throws MyException
      */
@@ -66,7 +66,7 @@ public class CptsExportDataController {
         }
     }
     /**
-     * 导出excel 数据文件
+     * 导出excel 数据文件2
      * @param response
      * @throws MyException
      */
@@ -91,6 +91,34 @@ public class CptsExportDataController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 导出excel 数据文件3
+     * @param response
+     * @throws MyException
+     */
+    @RequestMapping(value = "exportData100", method = RequestMethod.GET)
+    public void exportData100(HttpServletResponse response) throws MyException{
+        try {
+            //开始时间
+            Date date = new Date();
+            long startTime = date.getTime();
+            logger.info(startTime + "");
+            cptsExportDataService.exportData100(response);
+            Date date1 = new Date();
+            long endTime = date1.getTime();
+            logger.info(endTime + "");
+            logger.info((endTime - startTime) + "");
+        } catch (Exception e) {
+            if (e instanceof IOException){
+                logger.error(e.getMessage());
+                throw new MyException(e.getMessage(),"50000000");
+            }
+            logger.error(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     /**
      * 读取Excel文件
      * @param file

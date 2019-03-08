@@ -25,7 +25,9 @@ function exportData10() {
     window.location.href="/cpts/exportData10";
 }
 
-
+function exportData100() {
+    window.location.href="/cpts/exportData100";
+}
 
 
 

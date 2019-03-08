@@ -11,10 +11,12 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFRichTextString;
@@ -50,23 +52,35 @@ public class CptsExportDataService implements ICptsExportDataService {
      * 导出数据 50000条
      */
     public void exportData5(HttpServletResponse response)throws IOException{
-        List<Export> exports = cptsExportDao.exportData();
+        /*List<Export> exports = cptsExportDao.exportData();*/
+        List<Export> exports = cptsExportDao.selectDifferentId(1000000);
         //导出行数在65535条以内
         export1(exports, response);
         //导出行数在1048576以内
         //export2(exports, response);
     }
     /**
-     * 导出数据 50000条
+     * 导出数据 1000000条
      */
     public void exportData10(HttpServletResponse response)throws IOException{
-        List<Export> exports = cptsExportDao.exportData();
+        /*List<Export> exports = cptsExportDao.exportData();*/
+        List<Export> exports = cptsExportDao.selectDifferentId(1000000);
         //导出行数在65535条以内
         //export1(exports, response);
         //导出行数在1048576以内
         export2(exports, response);
     }
-
+    /**
+     * 导出数据 1000000条
+     */
+    public void exportData100(HttpServletResponse response)throws IOException{
+      /*  List<Export> exports = cptsExportDao.exportData();*/
+        List<Export> exports = cptsExportDao.selectDifferentId(1000000);
+        //导出行数在65535条以内
+        //export1(exports, response);
+        //导出行数在1048576以内
+        export3(exports, response);
+    }
     /**
      * 导出方法 一
      * 详细配置请参考
@@ -195,7 +209,7 @@ public class CptsExportDataService implements ICptsExportDataService {
         cellStyle.setAlignment(XSSFCellStyle.ALIGN_CENTER);
 
         //设置文件名字
-        String fileName = "data" + ".xls";
+        String fileName = "data" + ".xlsx";
         int rowNum = 2;
         //表头名称
         String[] headers = {"ID", "姓名", "性别", "身高","h1","h2","a3","a4","r5","t6","t7","u8","u9","010"};
@@ -209,22 +223,95 @@ public class CptsExportDataService implements ICptsExportDataService {
 
         //在表中存放查询到的数据 放入对应的列
         for (Export export : exports){
-            XSSFRow row1 = sheet.createRow(rowNum);
-            row1.createCell(0).setCellValue(export.getId());
-            row1.createCell(1).setCellValue(export.getName());
-            row1.createCell(2).setCellValue(export.getSex());
-            row1.createCell(3).setCellValue(export.getHigh());
-            row1.createCell(4).setCellValue(export.getH1());
-            row1.createCell(5).setCellValue(export.getH2());
-            row1.createCell(6).setCellValue(export.getA3());
-            row1.createCell(7).setCellValue(export.getA4());
-            row1.createCell(8).setCellValue(export.getR5());
-            row1.createCell(9).setCellValue(export.getT6());
-            row1.createCell(10).setCellValue(export.getT7());
-            row1.createCell(11).setCellValue(export.getU8());
-            row1.createCell(12).setCellValue(export.getU9());
-            row1.createCell(13).setCellValue(export.getO10());
-            rowNum ++;
+          /*  for(int j=0;j<8;j++){*/
+                XSSFRow row1 = sheet.createRow(rowNum);
+                row1.createCell(0).setCellValue(export.getId());
+                row1.createCell(1).setCellValue(export.getName());
+                row1.createCell(2).setCellValue(export.getSex());
+                row1.createCell(3).setCellValue(export.getHigh());
+                row1.createCell(4).setCellValue(export.getH1());
+                row1.createCell(5).setCellValue(export.getH2());
+                row1.createCell(6).setCellValue(export.getA3());
+                row1.createCell(7).setCellValue(export.getA4());
+                row1.createCell(8).setCellValue(export.getR5());
+                row1.createCell(9).setCellValue(export.getT6());
+                row1.createCell(10).setCellValue(export.getT7());
+                row1.createCell(11).setCellValue(export.getU8());
+                row1.createCell(12).setCellValue(export.getU9());
+                row1.createCell(13).setCellValue(export.getO10());
+                rowNum ++;
+           /* }*/
+        }
+
+        //（ 二进制流，不知道下载文件类型）
+        response.setContentType("application/octet-stream");
+        response.setHeader("Content-disposition", "attachment;filename=" +fileName);
+        //刷新缓冲区
+        response.flushBuffer();
+        //输出
+        ServletOutputStream outputStream = response.getOutputStream();
+        workbook.write(outputStream);
+        workbook.close();
+        outputStream.close();
+    }
+
+    /**
+     * 导出方法3
+     * @param exports
+     * @param response
+     * @throws IOException
+     */
+    private void export3(List<Export> exports, HttpServletResponse response) throws IOException {
+
+        Workbook workbook = new SXSSFWorkbook();
+        Sheet sheet = workbook.createSheet("数据信息表");
+
+        //合并单元格
+        CellRangeAddress region = new CellRangeAddress(0,0,0,3);
+        sheet.addMergedRegion(region);
+
+        //设置标题
+        Row rowTitle = sheet.createRow(0);
+        Cell cellTitle = rowTitle.createCell(0);
+        cellTitle.setCellValue("我的数据");
+
+        //设置样式  边框 左右居中
+        CellStyle cellStyle = workbook.createCellStyle();
+        cellStyle.setAlignment(XSSFCellStyle.ALIGN_CENTER);
+
+        //设置文件名字
+        String fileName = "data" + ".xlsx";
+        int rowNum = 2;
+        //表头名称
+        String[] headers = {"ID", "姓名", "性别", "身高","h1","h2","a3","a4","r5","t6","t7","u8","u9","010"};
+        //在excel表中添加表头
+        Row row = sheet.createRow(1);
+        for (int i = 0; i < headers.length; i++){
+            Cell cell = row.createCell(i);
+            XSSFRichTextString text = new XSSFRichTextString(headers[i]);
+            cell.setCellValue(text);
+        }
+
+        //在表中存放查询到的数据 放入对应的列
+        for (Export export : exports){
+           /* for(int j=0;j<10;j++) {*/
+                Row row1 = sheet.createRow(rowNum);
+                row1.createCell(0).setCellValue(export.getId());
+                row1.createCell(1).setCellValue(export.getName());
+                row1.createCell(2).setCellValue(export.getSex());
+                row1.createCell(3).setCellValue(export.getHigh());
+                row1.createCell(4).setCellValue(export.getH1());
+                row1.createCell(5).setCellValue(export.getH2());
+                row1.createCell(6).setCellValue(export.getA3());
+                row1.createCell(7).setCellValue(export.getA4());
+                row1.createCell(8).setCellValue(export.getR5());
+                row1.createCell(9).setCellValue(export.getT6());
+                row1.createCell(10).setCellValue(export.getT7());
+                row1.createCell(11).setCellValue(export.getU8());
+                row1.createCell(12).setCellValue(export.getU9());
+                row1.createCell(13).setCellValue(export.getO10());
+                rowNum++;
+           /* }*/
         }
 
         //（ 二进制流，不知道下载文件类型）

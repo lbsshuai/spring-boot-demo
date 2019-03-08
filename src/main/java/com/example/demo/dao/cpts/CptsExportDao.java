@@ -29,4 +29,12 @@ public class CptsExportDao {
         List<Export> exports = exportMapper.selectByExample(example);
         return exports;
     }
+
+    /**
+     * 导出一定数量的数据
+     */
+    public List<Export> selectDifferentId(Integer id){
+        List<Export> exports = exportMapper.selectDifferentId(id);
+        return exports;
+    }
 }
