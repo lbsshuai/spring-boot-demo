@@ -36,7 +36,7 @@
         </javaClientGenerator>
 
         <!--table是指定每个表的生成策略-->
-        
+
          <!-- 爱好表 -->
         <!--<table tableName="sys_user_love" domainObjectName="SysUserLove">
             <property name="userActualColumnNames" value="false"/>

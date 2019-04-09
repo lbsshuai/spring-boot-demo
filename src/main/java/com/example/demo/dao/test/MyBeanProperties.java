@@ -1,6 +1,7 @@
 package com.example.demo.dao.test;
 
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -10,11 +11,11 @@ import org.springframework.context.annotation.PropertySource;
  * @dete
  */
 @Configuration
-@PropertySource(value = "classpath:application-test.properties")
-@ConfigurationProperties(prefix = "com.lbs")
+@PropertySource(value = "classpath:dbconf.properties")
+@ConfigurationProperties(prefix = "spring.datasource")
 @Data
 public class MyBeanProperties {
 
-    private String one;
-    private String two;
+    private String url;
+    private String username;
 }

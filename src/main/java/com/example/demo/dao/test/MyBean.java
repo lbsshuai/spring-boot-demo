@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @dete
  */
 @ConfigurationProperties(prefix = "my")
-@Component
+@Component //为了让这个MyBean 可以被SpringBoot项目启动时被扫描并加入到Spring容器中
 @Data
 public class MyBean {
 
