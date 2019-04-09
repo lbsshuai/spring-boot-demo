@@ -122,5 +122,6 @@ public class DemoApplicationTests {
 	public void configBean(){
 		System.out.println(myBeanProperties.getUrl());
 		System.out.println(myBeanProperties.getUsername());
+
 	}
 }
