@@ -83,6 +83,8 @@ public class DemoApplicationTests {
 				System.out.println("j:"+j);
 			}
 			System.out.println("结束"+i);
+			//Release_2020
+			System.out.println("Release_2020");
 		}
 	}
 
