@@ -84,6 +84,8 @@ public class DemoApplicationTests {
 			}
 			System.out.println("结束"+i);
 			//test-01
+			//Release_2020
+			System.out.println("Release_2020");
 		}
 	}
 
@@ -123,5 +125,6 @@ public class DemoApplicationTests {
 	public void configBean(){
 		System.out.println(myBeanProperties.getUrl());
 		System.out.println(myBeanProperties.getUsername());
+
 	}
 }
