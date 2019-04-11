@@ -86,8 +86,6 @@ public class DemoApplicationTests {
 	@Test
 	public void testFenZhi(){
 		System.out.println("我回退了吗？");
-		System.out.println("看我，开始测试了");
 	}
-
 
 }
