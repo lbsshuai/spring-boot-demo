@@ -1,5 +1,7 @@
 package com.example.demo.controller.cpts;
 
+import com.example.demo.controller.aspect.Log;
+import com.example.demo.controller.aspect.OperationType;
 import com.example.demo.dao.model.SingleInfo;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import io.swagger.annotations.ApiOperation;
@@ -29,6 +31,7 @@ public class CptsController {
      * @return
      */
     @RequestMapping(value = "/cpts/index.html", method = RequestMethod.GET)
+    @Log(operationType = OperationType.UNKNOW, operationName = "进入鞋城首页controller1111111111111111111111111111111111")
     public ModelAndView cptsIndex() {
         logger.info("进入首页");
         ModelAndView mav = new ModelAndView();
