@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import com.example.demo.dao.model.ShoeInfo;
 import com.example.demo.dao.model.SingleInfo;
-import com.example.demo.dao.model.TblSysUser;
 
 import java.util.List;
 

@@ -4,8 +4,6 @@ import com.example.demo.dao.model.ShoeInfo;
 import com.example.demo.dao.util.PaginationUtil;
 import com.github.pagehelper.PageInfo;
 
-import java.util.List;
-
 /**
  * 鞋子信息Service
  * @author lbs

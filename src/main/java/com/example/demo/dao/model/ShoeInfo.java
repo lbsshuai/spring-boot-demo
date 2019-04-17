@@ -9,6 +9,14 @@ public class ShoeInfo {
 
     private String price;
 
+    private String size;
+
+    private String color;
+
+    private String isStock;
+
+    private String isDelete;
+
     public Integer getId() {
         return id;
     }
@@ -39,5 +47,37 @@ public class ShoeInfo {
 
     public void setPrice(String price) {
         this.price = price == null ? null : price.trim();
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size == null ? null : size.trim();
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color == null ? null : color.trim();
+    }
+
+    public String getIsStock() {
+        return isStock;
+    }
+
+    public void setIsStock(String isStock) {
+        this.isStock = isStock == null ? null : isStock.trim();
+    }
+
+    public String getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(String isDelete) {
+        this.isDelete = isDelete == null ? null : isDelete.trim();
     }
 }

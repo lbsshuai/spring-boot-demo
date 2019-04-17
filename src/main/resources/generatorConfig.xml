@@ -68,5 +68,16 @@
             <property name="userActualColumnNames" value="false"/>
             <property name="ignoreQualifiersAtRuntime" value="true"/>
         </table>-->
+        <!--用户订单表-->
+        <!--<table tableName="tbl_user_order" domainObjectName="TblUserOrder">
+            <property name="userActualColumnNames" value="false"/>
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+        </table>-->
+        <!--订单表-->
+        <!--<table tableName="order_info" domainObjectName="OrderInfo">
+            <property name="userActualColumnNames" value="false"/>
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+        </table>-->
+
     </context>
 </generatorConfiguration>

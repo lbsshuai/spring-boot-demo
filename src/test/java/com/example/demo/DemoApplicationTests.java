@@ -2,6 +2,8 @@ package com.example.demo;
 
 import com.example.demo.dao.test.MyBean;
 import com.example.demo.dao.test.MyBeanProperties;
+import com.example.demo.dao.util.DateUtil;
+import com.example.demo.dao.util.SysUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -125,12 +127,13 @@ public class DemoApplicationTests {
 	public void configBean(){
 		System.out.println(myBeanProperties.getUrl());
 		System.out.println(myBeanProperties.getUsername());
-
 	}
 
 	@Test
 	public void testFenZhi(){
-		System.out.println("我回退了吗？");
+		System.out.println(SysUtil.getOrderIdByTime());
+
+		System.out.println(SysUtil.getOrderIdByUUId());
 	}
 
 }

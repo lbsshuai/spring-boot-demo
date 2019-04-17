@@ -7,5 +7,6 @@ package com.example.demo.dao.util;
  */
 public class StringUtils extends org.apache.commons.lang3.StringUtils{
 
+    //待添加工具
 	
 }
