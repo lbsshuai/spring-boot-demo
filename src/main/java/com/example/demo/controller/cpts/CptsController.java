@@ -2,19 +2,13 @@ package com.example.demo.controller.cpts;
 
 import com.example.demo.controller.aspect.Log;
 import com.example.demo.controller.aspect.OperationType;
-import com.example.demo.dao.model.SingleInfo;
-import com.sun.org.apache.xpath.internal.operations.Mod;
-import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.naming.Name;
-import java.util.List;
 
 /**
  * @author lbs

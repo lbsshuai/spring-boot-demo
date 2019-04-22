@@ -8,6 +8,7 @@
 <!-- Custom Theme files -->
 <!--theme-style-->
 <link href="/cpts/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -15,9 +16,6 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--fonts-->
-<link href='http://fonts.useso.com/css?family=Alegreya+Sans+SC:100,300,400,500,700,800,900,100italic,300italic,400italic,500italic,700italic,800italic,900italic' rel='stylesheet' type='text/css'>
-<link href='http://fonts.useso.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-<!--//fonts-->
 <script type="text/javascript"src="/cpts/js/move-top.js"></script>
 <script type="text/javascript"src="/cpts/js/easing.js"></script>
 <script type="text/javascript">
@@ -29,7 +27,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					});
 				</script>
 <!-- start menu -->
-<scriptsrc="/cpts/js/simpleCart.min.js"> </script>
+<script src="/cpts/js/simpleCart.min.js"> </script>
 <link href="/cpts/css/memenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript"src="/cpts/js/memenu.js"></script>
 <script>$(document).ready(function(){$(".memenu").memenu();});</script>
@@ -313,7 +311,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<div class="ckeckout-top">
 			<div class=" cart-items heading">
-			 <h3>My Shopping Bag (3)</h3>
+			 <h3>My Shopping Bag <span id="sum"></span></h3>
 				<script>$(document).ready(function(c) {
 					$('.close1').on('click', function(c){
 						$('.cart-header').fadeOut('slow', function(c){
@@ -341,12 +339,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			<div class="in-check" >
 				<ul class="unit unit1">
-					<li style="width: 15%; margin-left: 40px"><span>Item</span></li>
-					<li style="width: 15%;"><span>Product Name</span></li>
-					<li style="width: 15%;"><span>Unit Price</span></li>
-					<li style="width: 15%;"><span>Stock Status</span></li>
-					<li style="width: 15%;"><span>Product Num</span></li>
-					<li style="width: 15%;">Total Prices </li>
+					<li style="width: 12%; margin-left: 40px"><span>商品图</span></li>
+					<li style="width: 12%;"><span>名称</span></li>
+					<li style="width: 12%;"><span>价格</span></li>
+					<li style="width: 12%;"><span>存货</span></li>
+					<li style="width: 12%;"><span>颜色</span></li>
+					<li style="width: 12%;"><span>大小</span></li>
+					<li style="width: 12%;"><span>数量</span></li>
+					<li style="width: 12%;">总价 </li>
 					<div class="clearfix"> </div>
 				</ul>
 				<div id="cartInfo">
@@ -458,11 +458,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </body>
 <script type="text/javascript" src="/js/cpts/checkout.js"></script>
 <script type="text/javascript" src="/js/constants.js"></script>
+<script type="text/javascript" src="/js/common/datatict.js"></script>
 <style>
     .unit1{
-    .ul.unit li{
-        width: 15%;
-    }
+        .ul.unit li{
+            width: 15%;
+        }
     }
     .close11{
         left:95%;

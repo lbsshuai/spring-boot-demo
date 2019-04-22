@@ -3,7 +3,9 @@
  */
 var startSingleInfo = "";
 var id = null;
-
+var color = '1';
+var size = 40;
+var num = "";
 /**
  * 初始化
  */
@@ -27,6 +29,9 @@ function event() {
     })
     $('#cart').click(function () {
         toCart();
+    })
+    $('#color_1').click(function () {
+        colorSelect(1);
     })
 
 }
@@ -65,16 +70,39 @@ function startSingle() {
 }
 
 /**
+ * 点击颜色方法
+ */
+colorSelect = function (colorNum){
+    console.log(colorNum);
+    color = colorNum;
+}
+/**
+ * 鞋号点击
+ */
+function sizeSelect(sizeNum) {
+    console.log(sizeNum);
+    size = sizeNum;
+}
+
+
+/**
  * 加入购物车
  */
 function addToCart(){
     var localStorage = window.localStorage;
     id = localStorage.getItem("id");
     //获取商品数量
-    var num =  $("#numSelect").find("option:selected").text();
+    num =  $("#numSelect").find("option:selected").text();
+    console.log(num+ "--------------")
         $.ajax({
-        url: contextPath + 'cpts/verifyLoginToCart?id='+ id +"&num=" + num,
-        type: 'GET',
+        url: contextPath + 'cpts/verifyLoginToCart',
+        type: 'POSt',
+        data: {
+            id: id,
+            num: num,
+            color: color,
+            size: size
+            },
         success: function (data) {
             console.log(data);
             if (data.object === null){

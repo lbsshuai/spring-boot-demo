@@ -19,4 +19,5 @@ public interface TblUserOrderMapper {
     int updateByExampleSelective(@Param("record") TblUserOrder record, @Param("example") TblUserOrderExample example);
 
     int updateByExample(@Param("record") TblUserOrder record, @Param("example") TblUserOrderExample example);
+
 }

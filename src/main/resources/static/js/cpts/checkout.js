@@ -2,7 +2,7 @@
 var loginUserName = "";
 var cartInfo = "";
 var totalPrices = null;
-
+var cartInfoVoList = {};
 
 $(function () {
     init();
@@ -51,26 +51,34 @@ function getCartInfo() {
        type: 'GET',
        success: function (data) {
            var object = data.object;
+           cartInfoVoList = data.object;
            if(data === null){
                return;
            }
            console.log(object);
+           var bagNum = object.length + '';
+           document.getElementById('sum').innerHTML = bagNum;
            for(var i = 0, len = object.length; i < len; i++){
                var id = object[i]['id'];
                var img = object[i]['img'];
                var name = object[i]['name'];
                var num = object[i]['num'];
                var price = object[i]['price'];
+               var color = object[i]['color'];
+               var size = object[i]['size'];
+               var colorStr = colorList[color];
                totalPrices = totalPrices + num * price;
                cartInfo = cartInfo + '<ul class="cart-header">'+
-                   '<li  style="width: 15%;" class="ring-in">'+
+                   '<li  style="width: 12%;" class="ring-in">'+
                    '<img src="/cpts/images/shoeInfo/'+img+'" class="img-responsive"></li>'+
-                   '<li style="width: 15%;"><span>'+ name +'</span></li>'+
-                   '<li style="width: 15%;"><span style="color: red">$'+ price +'</span></li>'+
-                   '<li style="width: 15%;"><span>In Stock</span></li>'+
-                   '<li style="width: 15%;"><span>'+ num +'</span></li>'+
-                   '<li style="width: 15%;"><span style="color: red">$'+ num * price +'</span></li>'+
-                   '<li style="width: 15%;"><div onclick="deleteCartInfo('+id+')" class="close1 close11"> </div></li>'+
+                   '<li style="width: 12%;"><span>'+ name +'</span></li>'+
+                   '<li style="width: 12%;"><span style="color: red">$'+ price +'</span></li>'+
+                   '<li style="width: 12%;"><span>有</span></li>'+
+                   '<li style="width: 12%;"><a class='+colorStr+'><span>'+colorStr+'</span></a></li>'+
+                   '<li style="width: 12%;"><span>'+size+'</span></li>'+
+                   '<li style="width: 12%;"><span>'+ num +'</span></li>'+
+                   '<li style="width: 12%;"><span style="color: red">$'+ num * price +'</span></li>'+
+                   '<li style="width: 12%;"><div onclick="deleteCartInfo('+id+')" class="close1 close11"> </div></li>'+
                    '<div class="clearfix"> </div></ul>';
            }
            if(object.length > 0){
@@ -114,7 +122,20 @@ function backToHome() {
  * 提交订单
  */
 function submitOrder() {
-    if(totalPrices != null){
-        window.open('submitOrder.html', '_self');
-    }
+    console.log(cartInfoVoList);
+    //存储购物车中商品
+    $.ajax({
+        url: contextPath + 'cpts/storageCartInfo?userName=' + loginUserName,
+        type: 'GET',
+        success(data){
+            console.log(data);
+            if (data.flag) {
+                console.log("订单提交成功！")
+            }
+             if(totalPrices != null){
+                 window.open('submitOrder.html', '_self');
+             }
+        }
+    });
+
 }
