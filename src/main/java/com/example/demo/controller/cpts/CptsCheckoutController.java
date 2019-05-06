@@ -5,6 +5,11 @@ import com.example.demo.dao.util.JsonResult;
 import com.example.demo.dao.vo.CartInfoVo;
 import com.example.demo.dao.vo.CartInfoVoList;
 import com.example.demo.service.impl.CptsCheckoutService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,6 +38,13 @@ public class CptsCheckoutController {
      * @param userName
      * @return
      */
+
+    @ApiOperation(value = "获取购物车中的信息", notes = "获取")
+    @ApiImplicitParam(name = "userName", value = "用户名", required = true, dataType = "String", paramType = "query")
+    @ApiResponses({
+            @ApiResponse(code = 400, message = "请求参数没填好"),
+            @ApiResponse(code = 404, message = "请求路径没有或者跳转路径不正确")
+    })
     @RequestMapping(value = "cpts/getCartInfo", method = RequestMethod.GET)
     @ResponseBody
     public JsonResult getCartInfo(@RequestParam(value = "userName") String userName) throws MyException {
@@ -48,10 +60,23 @@ public class CptsCheckoutController {
      * @param userName
      * @return
      */
-    @RequestMapping(value = "cpts/delectCartInfo", method = RequestMethod.GET)
-    public void delectCartInfo(@RequestParam(value = "id") String id,
+    @ApiOperation(value = "删除购物车中商品信息",notes = "删除")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "商品id", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "userName", value = "用户名", required = true, dataType = "String", paramType = "query")
+    })
+    @ApiResponses({
+            @ApiResponse(code = 400, message = "请求参数没填好"),
+            @ApiResponse(code = 404, message = "请求路径没有或者跳转路径不正确")
+    })
+    @RequestMapping(value = "cpts/delectCartInfo", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult delectCartInfo(@RequestParam(value = "id") String id,
                                @RequestParam(value = "userName") String userName){
         cptsCheckoutService.deleteCartInfo(id, userName);
+        JsonResult jsonResult = new JsonResult();
+        jsonResult.setFlag("true");
+        return jsonResult;
     }
 
     /**

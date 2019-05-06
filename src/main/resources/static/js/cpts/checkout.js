@@ -97,10 +97,15 @@ function getCartInfo() {
  */
 function deleteCartInfo(id) {
     console.log(id);
+    var dataInfo = {
+        id: id,
+        userName: loginUserName
+    }
     $.ajax({
-        url: contextPath + "cpts/delectCartInfo?id=" + id +"&userName="+ loginUserName,
-        type: 'GET',
-        success: function () {
+        url: contextPath + "cpts/delectCartInfo",
+        type: 'post',
+        data: dataInfo,
+        success: function (data) {
             history.go(0);
         }
     })

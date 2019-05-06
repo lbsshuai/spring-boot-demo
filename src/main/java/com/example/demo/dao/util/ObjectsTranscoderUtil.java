@@ -1,17 +1,11 @@
 package com.example.demo.dao.util;
 
-import ch.qos.logback.core.util.CloseUtil;
-import com.example.demo.dao.vo.CartRequestParam;
-import com.google.common.io.Closeables;
-import com.sun.xml.internal.ws.Closeable;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 类型转换器

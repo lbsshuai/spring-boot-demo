@@ -94,6 +94,7 @@ public class CptsCheckoutService implements ICptsCheckoutService {
     public void deleteCartInfo(String id, String userName) {
         jedis.connect();
         jedis.hdel(userName, id);
+        jedis.close();
     }
 
     /**

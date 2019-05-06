@@ -29,7 +29,7 @@ public class Swagger2 {
 
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder()
-                .title("XXXAPI文档")
+                .title("Demo文档")
                 .description("简单优雅的restful风格")
                 .version("1.0")
                 .build();

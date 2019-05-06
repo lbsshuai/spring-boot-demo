@@ -1,6 +1,7 @@
 package com.example.demo.controller.cpts;
 
 import com.example.demo.dao.exception.MyException;
+import com.example.demo.dao.test.thread.ThreadCallable;
 import com.example.demo.service.impl.CptsExportDataService;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.slf4j.Logger;
@@ -17,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.Future;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @author lbs
@@ -28,6 +31,18 @@ public class CptsExportDataController {
 
     @Autowired
     private CptsExportDataService cptsExportDataService;
+
+
+  /*  @Autowired
+    private ThreadPoolExecutor threadPoolTaskExecutor;
+
+    @RequestMapping(value = "/thread/aaa", method = RequestMethod.GET)
+    public void aaa(){
+        ThreadCallable threadCallable = new ThreadCallable();
+        Future submit = threadPoolTaskExecutor.submit(threadCallable);
+        System.out.println(submit);
+    }*/
+
 
     private final static Logger logger = LoggerFactory.getLogger(CptsExportDataController.class);
 
