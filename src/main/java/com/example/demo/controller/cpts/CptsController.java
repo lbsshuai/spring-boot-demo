@@ -1,18 +1,20 @@
 package com.example.demo.controller.cpts;
 
-import com.example.demo.dao.model.SingleInfo;
-import com.sun.org.apache.xpath.internal.operations.Mod;
-import io.swagger.annotations.ApiOperation;
+import com.example.demo.controller.aspect.Log;
+import com.example.demo.controller.aspect.OperationType;
+import com.example.demo.dao.test.thread.ThreadCallable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.naming.Name;
-import java.util.List;
+import java.util.concurrent.Future;
+import java.util.concurrent.ThreadPoolExecutor;
+
 
 /**
  * @author lbs
@@ -29,6 +31,7 @@ public class CptsController {
      * @return
      */
     @RequestMapping(value = "/cpts/index.html", method = RequestMethod.GET)
+    @Log(operationType = OperationType.UNKNOW, operationName = "进入鞋城首页controller1111111111111111111111111111111111")
     public ModelAndView cptsIndex() {
         logger.info("进入首页");
         ModelAndView mav = new ModelAndView();

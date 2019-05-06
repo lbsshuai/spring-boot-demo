@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.dao.exception.MyException;
 import com.example.demo.dao.vo.CartInfoVo;
 
 import java.util.List;
@@ -10,7 +11,9 @@ import java.util.List;
  */
 public interface ICptsCheckoutService {
 
-    List<CartInfoVo> getCartInfo(String userName);
+    List<CartInfoVo> getCartInfo(String userName)  throws MyException;
 
     void deleteCartInfo(String id, String userName);
+
+    void storageCartInfo(String userName) throws MyException;
 }

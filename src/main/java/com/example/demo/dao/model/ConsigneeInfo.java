@@ -13,9 +13,11 @@ public class ConsigneeInfo {
 
     private String consigneeAddress;
 
+    private String isDefault;
+
     private Date createTime;
 
-    private String idDelete;
+    private String isDelete;
 
     public Integer getId() {
         return id;
@@ -57,6 +59,14 @@ public class ConsigneeInfo {
         this.consigneeAddress = consigneeAddress == null ? null : consigneeAddress.trim();
     }
 
+    public String getIsDefault() {
+        return isDefault;
+    }
+
+    public void setIsDefault(String isDefault) {
+        this.isDefault = isDefault == null ? null : isDefault.trim();
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -65,11 +75,11 @@ public class ConsigneeInfo {
         this.createTime = createTime;
     }
 
-    public String getIdDelete() {
-        return idDelete;
+    public String getIsDelete() {
+        return isDelete;
     }
 
-    public void setIdDelete(String idDelete) {
-        this.idDelete = idDelete == null ? null : idDelete.trim();
+    public void setIsDelete(String isDelete) {
+        this.isDelete = isDelete == null ? null : isDelete.trim();
     }
 }

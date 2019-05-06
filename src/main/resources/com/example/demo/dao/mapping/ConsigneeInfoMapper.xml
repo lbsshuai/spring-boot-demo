@@ -7,8 +7,9 @@
     <result column="consignee_phone" jdbcType="VARCHAR" property="consigneePhone" />
     <result column="consignee_zip_code" jdbcType="VARCHAR" property="consigneeZipCode" />
     <result column="consignee_address" jdbcType="VARCHAR" property="consigneeAddress" />
+    <result column="is_default" jdbcType="CHAR" property="isDefault" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="id_delete" jdbcType="CHAR" property="idDelete" />
+    <result column="is_delete" jdbcType="CHAR" property="isDelete" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,8 +70,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, consignee, consignee_phone, consignee_zip_code, consignee_address, create_time, 
-    id_delete
+    id, consignee, consignee_phone, consignee_zip_code, consignee_address, is_default, 
+    create_time, is_delete
   </sql>
   <select id="selectByExample" parameterType="com.example.demo.dao.model.ConsigneeInfoExample" resultMap="BaseResultMap">
     select
@@ -94,11 +95,11 @@
   </delete>
   <insert id="insert" parameterType="com.example.demo.dao.model.ConsigneeInfo">
     insert into consignee_info (id, consignee, consignee_phone, 
-      consignee_zip_code, consignee_address, create_time, 
-      id_delete)
+      consignee_zip_code, consignee_address, is_default, 
+      create_time, is_delete)
     values (#{id,jdbcType=INTEGER}, #{consignee,jdbcType=VARCHAR}, #{consigneePhone,jdbcType=VARCHAR}, 
-      #{consigneeZipCode,jdbcType=VARCHAR}, #{consigneeAddress,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{idDelete,jdbcType=CHAR})
+      #{consigneeZipCode,jdbcType=VARCHAR}, #{consigneeAddress,jdbcType=VARCHAR}, #{isDefault,jdbcType=CHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.demo.dao.model.ConsigneeInfo">
     insert into consignee_info
@@ -118,11 +119,14 @@
       <if test="consigneeAddress != null">
         consignee_address,
       </if>
+      <if test="isDefault != null">
+        is_default,
+      </if>
       <if test="createTime != null">
         create_time,
       </if>
-      <if test="idDelete != null">
-        id_delete,
+      <if test="isDelete != null">
+        is_delete,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -141,11 +145,14 @@
       <if test="consigneeAddress != null">
         #{consigneeAddress,jdbcType=VARCHAR},
       </if>
+      <if test="isDefault != null">
+        #{isDefault,jdbcType=CHAR},
+      </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="idDelete != null">
-        #{idDelete,jdbcType=CHAR},
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -173,11 +180,14 @@
       <if test="record.consigneeAddress != null">
         consignee_address = #{record.consigneeAddress,jdbcType=VARCHAR},
       </if>
+      <if test="record.isDefault != null">
+        is_default = #{record.isDefault,jdbcType=CHAR},
+      </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.idDelete != null">
-        id_delete = #{record.idDelete,jdbcType=CHAR},
+      <if test="record.isDelete != null">
+        is_delete = #{record.isDelete,jdbcType=CHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -191,8 +201,9 @@
       consignee_phone = #{record.consigneePhone,jdbcType=VARCHAR},
       consignee_zip_code = #{record.consigneeZipCode,jdbcType=VARCHAR},
       consignee_address = #{record.consigneeAddress,jdbcType=VARCHAR},
+      is_default = #{record.isDefault,jdbcType=CHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      id_delete = #{record.idDelete,jdbcType=CHAR}
+      is_delete = #{record.isDelete,jdbcType=CHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

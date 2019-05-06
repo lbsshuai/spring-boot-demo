@@ -1,20 +1,34 @@
 package com.example.demo;
 
+import com.example.demo.dao.common.ColorEnum;
+import com.example.demo.dao.common.CommonConstant;
 import com.example.demo.dao.test.MyBean;
 import com.example.demo.dao.test.MyBeanProperties;
+import com.example.demo.dao.util.DateUtil;
+import com.example.demo.dao.util.ObjectsTranscoderUtil;
+import com.example.demo.dao.util.SysUtil;
+import com.example.demo.dao.vo.CartRequestParam;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks;
+import redis.clients.jedis.Jedis;
 
 import javax.persistence.Temporal;
+import java.lang.reflect.Constructor;
 import java.sql.Timestamp;
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
+import java.util.logging.ConsoleHandler;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -34,6 +48,10 @@ public class DemoApplicationTests {
 	private String value;
 	@Value("${my.greeting}")
 	private String greeting;
+	@Value("${shoeMessageInfo}")
+	private String shoeMessageInfo;
+	@Value("${spring.datasource.url}")
+	private String springDataSourceUrl;
 
 	@Autowired
 	private MyBean myBean;
@@ -83,6 +101,7 @@ public class DemoApplicationTests {
 				System.out.println("j:"+j);
 			}
 			System.out.println("结束"+i);
+			//test-01
 			//Release_2020
 			System.out.println("Release_2020");
 		}
@@ -124,6 +143,23 @@ public class DemoApplicationTests {
 	public void configBean(){
 		System.out.println(myBeanProperties.getUrl());
 		System.out.println(myBeanProperties.getUsername());
-
 	}
+
+	@Test
+	public void testFenZhi(){
+		System.out.println(SysUtil.getOrderIdByTime());
+
+		System.out.println(SysUtil.getOrderIdByUUId());
+
+		String aa = MessageFormat.format(shoeMessageInfo, "小明", "郑州");
+		System.out.println(aa);
+		System.out.println(springDataSourceUrl);
+	}
+
+    @Test
+    public void testFenZhi1(){
+        String aa = MessageFormat.format(shoeMessageInfo, "张三", "郑州", "王五");
+        System.out.println(aa);
+    }
+
 }

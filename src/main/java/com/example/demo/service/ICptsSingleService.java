@@ -2,7 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.dao.model.ShoeInfo;
 import com.example.demo.dao.model.SingleInfo;
-import com.example.demo.dao.model.TblSysUser;
+import com.example.demo.dao.vo.CartRequestParam;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.util.List;
 public interface ICptsSingleService {
     List<SingleInfo> queryById(Integer id);
 
-    void addToCart(String id, String userName, String num);
+    void addToCart( CartRequestParam cartRequestParam);
 
     ShoeInfo getImgByShoeId(Integer shoeId);
 }

@@ -6,7 +6,6 @@ import com.example.demo.dao.util.PaginationUtil;
 import com.example.demo.service.ICptsIndexService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

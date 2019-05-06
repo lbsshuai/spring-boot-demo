@@ -4,10 +4,7 @@ import com.example.demo.dao.model.ShoeInfo;
 import com.example.demo.dao.util.JsonResult;
 import com.example.demo.dao.util.PaginationUtil;
 import com.example.demo.service.impl.CptsIndexService;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import lombok.AllArgsConstructor;
-import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
 /**
  * cpts 首页controller

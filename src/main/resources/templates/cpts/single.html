@@ -45,6 +45,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script>$(document).ready(function () {
         $(".memenu").memenu();
     });</script>
+    <script type="text/javascript" src="/js/cpts/single.js"></script>
+    <script type="text/javascript" src="/js/constants.js"></script>
+    <script type="text/javascript" src="/js/common/common.js"></script>
 </head>
 <body>
 <!--top-header-->
@@ -362,20 +365,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <p class="quick_desc"> This shoe is very good!</p>
                             <ul class="product-colors">
                                 <h3>available Colors ::</h3>
-                                <li><a class="color1" href="#"><span> </span></a></li>
-                                <li><a class="color2" href="#"><span> </span></a></li>
-                                <li><a class="color3" href="#"><span> </span></a></li>
-                                <li><a class="color4" href="#"><span> </span></a></li>
-                                <li><a class="color5" href="#"><span> </span></a></li>
-                                <li><a class="color6" href="#"><span> </span></a></li>
-                                <li><a class="color7" href="#"><span> </span></a></li>
-                                <li><a class="color8" href="#"><span> </span></a></li>
+                                <li><a class="color1" href="javascript:void(0);"><span id="color_1"> </span></a></li>
+                                <li><a class="color2" href="javascript:void(0);" onclick="colorSelect(2)"><span> </span></a></li>
+                                <li><a class="color3" href="javascript:void(0);" onclick="colorSelect(3)"><span> </span></a></li>
+                                <li><a class="color4" onclick="colorSelect(4)"><span> </span></a></li>
+                                <li><a class="color5" onclick="colorSelect(5)"><span> </span></a></li>
+                                <li><a class="color6" onclick="colorSelect(6)"><span> </span></a></li>
+                                <li><a class="color7" onclick="colorSelect(7)"><span> </span></a></li>
+                                <li><a class="color8" onclick="colorSelect(8)"><span> </span></a></li>
                                 <div class="clear"></div>
                             </ul>
                             <ul class="size">
                                 <h3>Length</h3>
-                                <li><a href="#">40</a></li>
-                                <li><a href="#">48</a></li>
+                                <li><a onclick="sizeSelect(40)">40</a></li>
+                                <li><a onclick="sizeSelect(41)">41</a></li>
+                                <li><a onclick="sizeSelect(42)">42</a></li>
+                                <li><a onclick="sizeSelect(43)">43</a></li>
+                                <li><a onclick="sizeSelect(44)">44</a></li>
                             </ul>
                             <div class="quantity_box">
                                 <ul class="product-qty">
@@ -401,7 +407,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="clearfix"></div>
                 </div>
                 <!--/*@thymesVar id="yu" type="java"*/-->
-                <p th:text="${yu}"></p>
+                <!--可以这样获取后端   mav.addObject("yu","1111111"); 传的值-->
+                <!--<p th:text="${yu}"></p>-->
 <!--
                 <div class="latest products">
                     <div class="product-one">
@@ -608,8 +615,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                                              style="opacity: 1;"> </span></a>
 </div>
 <!--end-footer-text-->
+
 </body>
-<script type="text/javascript" src="/js/cpts/single.js"></script>
-<script type="text/javascript" src="/js/constants.js"></script>
-<script type="text/javascript" src="/js/common/common.js"></script>
 </html>

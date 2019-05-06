@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.mapper.OrderInfoMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.dao.model.OrderInfo">
+    <result column="order_num" jdbcType="VARCHAR" property="orderNum" />
+    <result column="shoe_id" jdbcType="INTEGER" property="shoeId" />
+    <result column="shoe_color" jdbcType="VARCHAR" property="shoeColor" />
+    <result column="shoe_size" jdbcType="VARCHAR" property="shoeSize" />
+    <result column="shoe_price" jdbcType="VARCHAR" property="shoePrice" />
+    <result column="shoe_amount" jdbcType="VARCHAR" property="shoeAmount" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    order_num, shoe_id, shoe_color, shoe_size, shoe_price, shoe_amount
+  </sql>
+  <select id="selectByExample" parameterType="com.example.demo.dao.model.OrderInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from order_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.example.demo.dao.model.OrderInfoExample">
+    delete from order_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.dao.model.OrderInfo">
+    insert into order_info (order_num, shoe_id, shoe_color, 
+      shoe_size, shoe_price, shoe_amount
+      )
+    values (#{orderNum,jdbcType=VARCHAR}, #{shoeId,jdbcType=INTEGER}, #{shoeColor,jdbcType=VARCHAR}, 
+      #{shoeSize,jdbcType=VARCHAR}, #{shoePrice,jdbcType=VARCHAR}, #{shoeAmount,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.dao.model.OrderInfo">
+    insert into order_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderNum != null">
+        order_num,
+      </if>
+      <if test="shoeId != null">
+        shoe_id,
+      </if>
+      <if test="shoeColor != null">
+        shoe_color,
+      </if>
+      <if test="shoeSize != null">
+        shoe_size,
+      </if>
+      <if test="shoePrice != null">
+        shoe_price,
+      </if>
+      <if test="shoeAmount != null">
+        shoe_amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderNum != null">
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="shoeId != null">
+        #{shoeId,jdbcType=INTEGER},
+      </if>
+      <if test="shoeColor != null">
+        #{shoeColor,jdbcType=VARCHAR},
+      </if>
+      <if test="shoeSize != null">
+        #{shoeSize,jdbcType=VARCHAR},
+      </if>
+      <if test="shoePrice != null">
+        #{shoePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="shoeAmount != null">
+        #{shoeAmount,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.demo.dao.model.OrderInfoExample" resultType="java.lang.Long">
+    select count(*) from order_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update order_info
+    <set>
+      <if test="record.orderNum != null">
+        order_num = #{record.orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shoeId != null">
+        shoe_id = #{record.shoeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shoeColor != null">
+        shoe_color = #{record.shoeColor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shoeSize != null">
+        shoe_size = #{record.shoeSize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shoePrice != null">
+        shoe_price = #{record.shoePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shoeAmount != null">
+        shoe_amount = #{record.shoeAmount,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update order_info
+    set order_num = #{record.orderNum,jdbcType=VARCHAR},
+      shoe_id = #{record.shoeId,jdbcType=INTEGER},
+      shoe_color = #{record.shoeColor,jdbcType=VARCHAR},
+      shoe_size = #{record.shoeSize,jdbcType=VARCHAR},
+      shoe_price = #{record.shoePrice,jdbcType=VARCHAR},
+      shoe_amount = #{record.shoeAmount,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+  <!--批量插入数据-->
+  <insert id="insertOrderInfoList" parameterType="java.util.List">
+    insert into order_info
+    (order_num, shoe_id, shoe_color, shoe_size, shoe_price, shoe_amount)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (
+      #{item.orderNum},
+      #{item.shoeId},
+      #{item.shoeColor},
+      #{item.shoeSize},
+      #{item.shoePrice},
+      #{item.shoeAmount}
+      )
+    </foreach>
+
+
+  </insert>
+</mapper>

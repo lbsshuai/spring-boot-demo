@@ -348,7 +348,6 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-
   <select id="selectDifferentId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

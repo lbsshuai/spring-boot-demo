@@ -6,6 +6,10 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="img" jdbcType="VARCHAR" property="img" />
     <result column="price" jdbcType="VARCHAR" property="price" />
+    <result column="size" jdbcType="VARCHAR" property="size" />
+    <result column="color" jdbcType="VARCHAR" property="color" />
+    <result column="is_stock" jdbcType="CHAR" property="isStock" />
+    <result column="is_delete" jdbcType="CHAR" property="isDelete" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, img, price
+    id, name, img, price, size, color, is_stock, is_delete
   </sql>
   <select id="selectByExample" parameterType="com.example.demo.dao.model.ShoeInfoExample" resultMap="BaseResultMap">
     select
@@ -100,9 +104,11 @@
   </delete>
   <insert id="insert" parameterType="com.example.demo.dao.model.ShoeInfo">
     insert into shoe_info (id, name, img, 
-      price)
+      price, size, color, 
+      is_stock, is_delete)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, 
-      #{price,jdbcType=VARCHAR})
+      #{price,jdbcType=VARCHAR}, #{size,jdbcType=VARCHAR}, #{color,jdbcType=VARCHAR}, 
+      #{isStock,jdbcType=CHAR}, #{isDelete,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.demo.dao.model.ShoeInfo">
     insert into shoe_info
@@ -119,6 +125,18 @@
       <if test="price != null">
         price,
       </if>
+      <if test="size != null">
+        size,
+      </if>
+      <if test="color != null">
+        color,
+      </if>
+      <if test="isStock != null">
+        is_stock,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -132,6 +150,18 @@
       </if>
       <if test="price != null">
         #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null">
+        #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="isStock != null">
+        #{isStock,jdbcType=CHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -156,6 +186,18 @@
       <if test="record.price != null">
         price = #{record.price,jdbcType=VARCHAR},
       </if>
+      <if test="record.size != null">
+        size = #{record.size,jdbcType=VARCHAR},
+      </if>
+      <if test="record.color != null">
+        color = #{record.color,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isStock != null">
+        is_stock = #{record.isStock,jdbcType=CHAR},
+      </if>
+      <if test="record.isDelete != null">
+        is_delete = #{record.isDelete,jdbcType=CHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -166,7 +208,11 @@
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       img = #{record.img,jdbcType=VARCHAR},
-      price = #{record.price,jdbcType=VARCHAR}
+      price = #{record.price,jdbcType=VARCHAR},
+      size = #{record.size,jdbcType=VARCHAR},
+      color = #{record.color,jdbcType=VARCHAR},
+      is_stock = #{record.isStock,jdbcType=CHAR},
+      is_delete = #{record.isDelete,jdbcType=CHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -183,6 +229,18 @@
       <if test="price != null">
         price = #{price,jdbcType=VARCHAR},
       </if>
+      <if test="size != null">
+        size = #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null">
+        color = #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="isStock != null">
+        is_stock = #{isStock,jdbcType=CHAR},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=CHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -190,16 +248,21 @@
     update shoe_info
     set name = #{name,jdbcType=VARCHAR},
       img = #{img,jdbcType=VARCHAR},
-      price = #{price,jdbcType=VARCHAR}
+      price = #{price,jdbcType=VARCHAR},
+      size = #{size,jdbcType=VARCHAR},
+      color = #{color,jdbcType=VARCHAR},
+      is_stock = #{isStock,jdbcType=CHAR},
+      is_delete = #{isDelete,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
 
   <select id="queryAll" resultType="com.example.demo.dao.model.ShoeInfo">
     select * FROM shoe_info
   </select>
 
   <select id="queryShoeByPagination" resultType="com.example.demo.dao.model.ShoeInfo"
-    parameterType="com.example.demo.dao.util.PaginationUtil">
+          parameterType="com.example.demo.dao.util.PaginationUtil">
     select * FROM shoe_info
   </select>
 </mapper>

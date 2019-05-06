@@ -1,6 +1,6 @@
 package encryption;
 
-import com.sun.xml.internal.messaging.saaj.packaging.mime.util.BASE64EncoderStream;
+//import com.sun.xml.internal.messaging.saaj.packaging.mime.util.BASE64EncoderStream;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,7 +26,7 @@ public class Encryption {
     public void encryptionTest(){
     }
 
-    private String rsaEncryption(String src, PublicKey publicKey){
+   /* private String rsaEncryption(String src, PublicKey publicKey){
         try {
             Cipher cip = Cipher.getInstance("RSA");
             cip.init(cip.ENCRYPT_MODE, publicKey);
@@ -45,6 +45,6 @@ public class Encryption {
         }
         return src;
     }
-
+*/
 
 }

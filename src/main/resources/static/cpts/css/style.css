@@ -847,28 +847,28 @@ ul.product-colors {
 	display: inline-block;
 }
 .color1 span {
-	background: #D2D6D5;
+	background: wheat;
 }
 .color2 span {
-	background: #008CB7;
+	background: blue;
 }
 .color3 span {
-	background: #F3349E;
+	background:deeppink;
 }
 .color4 span {
-	background: #93D52D;
+	background: green;
 }
 .color5 span {
-	background: #FD9812;
+	background: orange;
 }
 .color6 span {
-	background: #000000;
+	background: black;
 }
 .color7 span {
-	background: #7800F0;
+	background: red;
 }
 .color8 span {
-	background: #F6EF04;
+	background: yellow;
 }
 ul.size {
 	padding: 0;

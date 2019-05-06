@@ -2,24 +2,19 @@ package com.example.demo.controller.cpts;
 
 import com.example.demo.dao.common.CommonConstant;
 import com.example.demo.dao.model.ShoeInfo;
-import com.example.demo.dao.model.SingleInfo;
-import com.example.demo.dao.model.TblSysUser;
 import com.example.demo.dao.util.JsonResult;
 import com.example.demo.dao.util.StringUtils;
+import com.example.demo.dao.vo.CartRequestParam;
 import com.example.demo.service.impl.CptsSingleService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 /**
  * 商品详情页
@@ -49,6 +44,12 @@ public class CptsSingleController {
         return jsonResult;
     }
 
+    /**
+     * 验证用户是否登录
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "/cpts/verifyLogin", method = RequestMethod.GET)
     @ResponseBody
     public JsonResult verifyLogin(HttpServletRequest request, HttpServletResponse response){
@@ -71,17 +72,18 @@ public class CptsSingleController {
      * @param response
      * @return
      */
-    @RequestMapping(value = "/cpts/verifyLoginToCart", method = RequestMethod.GET)
+    @RequestMapping(value = "/cpts/verifyLoginToCart", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult verifyLoginToCart(HttpServletRequest request, HttpServletResponse response,
-                                  @RequestParam(value = "id") String id , @RequestParam(value = "num") String num){
+                                        @ModelAttribute CartRequestParam cartRequestParam){
         logger.info("加入购物车 前提验证登录");
         JsonResult jsonResult = new JsonResult();
         //获取session
         HttpSession session = request.getSession();
         String attribute = (String) session.getAttribute(CommonConstant.USER_NAME);
+        cartRequestParam.setUserName(attribute);
         if(StringUtils.isNotBlank(attribute)){
-            cptsSingleService.addToCart(id, attribute, num);
+            cptsSingleService.addToCart(cartRequestParam);
         }
 
         jsonResult.setObject(attribute);

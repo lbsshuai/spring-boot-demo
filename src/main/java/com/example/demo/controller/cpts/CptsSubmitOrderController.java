@@ -22,6 +22,11 @@ public class CptsSubmitOrderController {
     @Autowired
     private CptsSubmitOrderService cptsSubmitOrderService;
 
+    /**
+     * 地址信息提交
+     * @param consigneeInfo
+     * @return
+     */
     @PostMapping(value = "submit")
     public JsonResult submitOrder(@ModelAttribute ConsigneeInfo consigneeInfo){
         JsonResult jsonResult = new JsonResult();
