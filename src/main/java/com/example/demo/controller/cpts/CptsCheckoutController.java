@@ -38,7 +38,7 @@ public class CptsCheckoutController {
     }
 
     /**
-     * 删除购物车中商品信息
+     * 删除购物车中商品的信息呵呵
      * @param id
      * @param userName
      * @return
@@ -48,5 +48,6 @@ public class CptsCheckoutController {
     public void delectCartInfo(@RequestParam(value = "id") String id,
                                @RequestParam(value = "userName") String userName){
         cptsCheckoutService.deleteCartInfo(id, userName);
+        System.out.println(id+userName);
     }
 }
