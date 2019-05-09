@@ -3,6 +3,10 @@ package com.example.demo.controller.cpts;
 import com.example.demo.dao.exception.MyException;
 import com.example.demo.dao.test.thread.ThreadCallable;
 import com.example.demo.service.impl.CptsExportDataService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +29,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @author lbs
  * @dete
  */
+@Api(tags = "Data export interface", position = 6)
 @Controller
 @RequestMapping(value = "cpts/")
 public class CptsExportDataController {
@@ -49,6 +54,11 @@ public class CptsExportDataController {
     /**
      * 数据导出页面
      */
+    @ApiOperation(value = "跳转数据导出页面", notes = "跳转")
+    @ApiResponses({
+            @ApiResponse(code = 401, message = "未经授权，缺少此功能权限"),
+            @ApiResponse(code = 500, message = "服务开小差！")
+    })
     @RequestMapping(value = "export.html", method = RequestMethod.GET)
     public String export(){
         return "cpts/export";
@@ -59,6 +69,7 @@ public class CptsExportDataController {
      * @param response
      * @throws MyException
      */
+    @ApiOperation(value = "导出5万条数据", notes = "HSSFWorkbook")
     @RequestMapping(value = "exportData5", method = RequestMethod.GET)
     public void exportData5(HttpServletResponse response) throws MyException{
         try {
@@ -85,6 +96,7 @@ public class CptsExportDataController {
      * @param response
      * @throws MyException
      */
+    @ApiOperation(value = "导出100万条数据", notes = "XSSFWorkbook")
     @RequestMapping(value = "exportData10", method = RequestMethod.GET)
     public void exportData10(HttpServletResponse response) throws MyException{
         try {
@@ -112,6 +124,7 @@ public class CptsExportDataController {
      * @param response
      * @throws MyException
      */
+    @ApiOperation(value = "导出100万条数据", notes = "SXSSFWorkbook")
     @RequestMapping(value = "exportData100", method = RequestMethod.GET)
     public void exportData100(HttpServletResponse response) throws MyException{
         try {
@@ -139,6 +152,7 @@ public class CptsExportDataController {
      * @param file
      * @return
      */
+    @ApiOperation(value = "读取Excel文件", notes = "读取")
     @RequestMapping(value = "readData", method = RequestMethod.POST)
     @ResponseBody
     public List<String[]> readData(@RequestPart("file")MultipartFile file){

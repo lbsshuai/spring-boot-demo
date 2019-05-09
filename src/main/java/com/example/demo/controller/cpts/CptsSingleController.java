@@ -6,12 +6,17 @@ import com.example.demo.dao.util.JsonResult;
 import com.example.demo.dao.util.StringUtils;
 import com.example.demo.dao.vo.CartRequestParam;
 import com.example.demo.service.impl.CptsSingleService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.naming.Name;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,6 +26,7 @@ import javax.servlet.http.HttpSession;
  * @author lbs
  * @dete
  */
+@Api(tags = "Product details page interface", position = 3)
 @Controller
 public class CptsSingleController {
 
@@ -35,6 +41,9 @@ public class CptsSingleController {
      * @param shoeId
      * @return
      */
+    @ApiOperation(value = "获取商品信息通过商品ID", notes = "获取")
+    @ApiImplicitParam(name = "shoeId", value = "商品ID", required = true, paramType = "query", dataType = "Integer", defaultValue = "2")
+    @ApiResponse(code = 500, message = "系统报错!")
     @RequestMapping(value = "/cpts/getImgById", method = RequestMethod.GET)
     @ResponseBody
     public JsonResult getImgById(@RequestParam("shoeId") Integer shoeId){
@@ -50,6 +59,8 @@ public class CptsSingleController {
      * @param response
      * @return
      */
+    @ApiOperation(value = "验证用户是否登录", notes = "验证")
+    @ApiResponse(code = 500, message = "系统错误")
     @RequestMapping(value = "/cpts/verifyLogin", method = RequestMethod.GET)
     @ResponseBody
     public JsonResult verifyLogin(HttpServletRequest request, HttpServletResponse response){
@@ -72,6 +83,7 @@ public class CptsSingleController {
      * @param response
      * @return
      */
+    @ApiOperation(value = "加入购物车", notes = "添加")
     @RequestMapping(value = "/cpts/verifyLoginToCart", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult verifyLoginToCart(HttpServletRequest request, HttpServletResponse response,
@@ -90,3 +102,4 @@ public class CptsSingleController {
         return jsonResult;
     }
 }
+

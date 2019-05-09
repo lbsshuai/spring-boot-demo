@@ -5,6 +5,7 @@ import com.example.demo.dao.util.JsonResult;
 import com.example.demo.dao.vo.CartInfoVo;
 import com.example.demo.dao.vo.CartInfoVoList;
 import com.example.demo.service.impl.CptsCheckoutService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -27,6 +28,7 @@ import java.util.List;
  * @author lbs
  * @dete
  */
+@Api(tags = "Shopping cart page interface", position = 4)/*position 现在不起作用  原用来排版 页面展示先后顺序 */
 @Controller
 public class CptsCheckoutController {
 
@@ -40,7 +42,7 @@ public class CptsCheckoutController {
      */
 
     @ApiOperation(value = "获取购物车中的信息", notes = "获取")
-    @ApiImplicitParam(name = "userName", value = "用户名", required = true, dataType = "String", paramType = "query")
+    @ApiImplicitParam(name = "userName", value = "用户名", required = true, dataType = "String", paramType = "query", defaultValue = "qqq")
     @ApiResponses({
             @ApiResponse(code = 400, message = "请求参数没填好"),
             @ApiResponse(code = 404, message = "请求路径没有或者跳转路径不正确")
@@ -63,7 +65,7 @@ public class CptsCheckoutController {
     @ApiOperation(value = "删除购物车中商品信息",notes = "删除")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "商品id", required = true, dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name = "userName", value = "用户名", required = true, dataType = "String", paramType = "query")
+            @ApiImplicitParam(name = "userName", value = "用户名", required = true, dataType = "String", paramType = "query", defaultValue = "qqq")
     })
     @ApiResponses({
             @ApiResponse(code = 400, message = "请求参数没填好"),
@@ -83,6 +85,12 @@ public class CptsCheckoutController {
      * 提交订单
      * @param userName
      */
+    @ApiOperation(value = "提交订单", notes = "提交")
+    @ApiImplicitParam(name = "userName", value = "用户名", required = true, dataType = "String", paramType = "query", defaultValue = "qqq")
+    @ApiResponses({
+            @ApiResponse(code = 400, message = "请求参数没填好"),
+            @ApiResponse(code = 404, message = "请求路径没有或者跳转路径不正确")
+    })
     @RequestMapping(value = "cpts/storageCartInfo", method = RequestMethod.GET)
     @ResponseBody
     public JsonResult storageCartInfo(@RequestParam(value = "userName") String userName) throws MyException {

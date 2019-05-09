@@ -3664,7 +3664,7 @@
       if (recomputeMaxLength) cm.curOp.updateMaxLine = true;
     }
 
-    // Adjust frontier, schedule worker
+    // Adjust frontier, job worker
     doc.frontier = Math.min(doc.frontier, from.line);
     startWorker(cm, 400);
 
