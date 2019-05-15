@@ -65,7 +65,9 @@ public class CptsCheckoutController {
     @ApiOperation(value = "删除购物车中商品信息",notes = "删除")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "商品id", required = true, dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name = "userName", value = "用户名", required = true, dataType = "String", paramType = "query", defaultValue = "qqq")
+            @ApiImplicitParam(name = "userName", value = "用户名", required = true, dataType = "String", paramType = "query", defaultValue = "qqq"),
+            @ApiImplicitParam(name = "color", value = "商品颜色", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "size", value = "商品大小", required = true, dataType = "String", paramType = "query")
     })
     @ApiResponses({
             @ApiResponse(code = 400, message = "请求参数没填好"),
@@ -74,8 +76,10 @@ public class CptsCheckoutController {
     @RequestMapping(value = "cpts/delectCartInfo", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult delectCartInfo(@RequestParam(value = "id") String id,
-                               @RequestParam(value = "userName") String userName){
-        cptsCheckoutService.deleteCartInfo(id, userName);
+                               @RequestParam(value = "userName") String userName,
+                                     @RequestParam(value = "color") String color,
+                                     @RequestParam(value = "size") String size){
+        cptsCheckoutService.deleteCartInfo(id, userName, color, size);
         System.out.println(id+userName);
         JsonResult jsonResult = new JsonResult();
         jsonResult.setFlag("true");

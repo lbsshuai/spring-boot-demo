@@ -13,7 +13,7 @@ public interface ICptsCheckoutService {
 
     List<CartInfoVo> getCartInfo(String userName)  throws MyException;
 
-    void deleteCartInfo(String id, String userName);
+    void deleteCartInfo(String id, String userName, String color, String size);
 
     void storageCartInfo(String userName) throws MyException;
 }

@@ -162,4 +162,15 @@ public class DemoApplicationTests {
         System.out.println(aa);
     }
 
+
+    @Test
+	public void tantan(){
+		Date date = new Date();
+		System.out.println("当前系统时间显示："+ date);
+		//时间格式转换
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String formatDate = simpleDateFormat.format(date);
+		System.out.println("转换后的时间格式：" + formatDate);
+
+	}
 }

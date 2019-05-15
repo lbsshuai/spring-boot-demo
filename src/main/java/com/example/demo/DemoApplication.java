@@ -15,7 +15,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @MapperScan(basePackages= {"com.example.demo.dao.mapper","com.example.demo.*.mapper"})
 //@PropertySource注解可以一个一个读取配置文件 不能直接使用*.properties操作
-@PropertySource(value = {"classpath:properties/sys.properties", "classpath:properties/dbconf.properties"})
+@PropertySource(value = {"classpath:properties/sys.properties",
+						"classpath:properties/dbconf.properties",
+						"classpath:properties/quartz.properties"})
 public class DemoApplication implements WebMvcConfigurer{
 	
 	@Override

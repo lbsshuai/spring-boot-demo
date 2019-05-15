@@ -1,16 +1,17 @@
 package com.example.demo.dao.cpts;
 
+import com.example.demo.dao.mapper.CartInfoMapper;
 import com.example.demo.dao.mapper.OrderInfoMapper;
 import com.example.demo.dao.mapper.ShoeInfoMapper;
 import com.example.demo.dao.mapper.SingleInfoMapper;
 import com.example.demo.dao.mapper.TblSysUserMapper;
 import com.example.demo.dao.mapper.TblUserOrderMapper;
 import com.example.demo.dao.model.*;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 
 /**
  * @author lbs
@@ -33,6 +34,11 @@ public class CptsSingleDao {
 
     @Autowired
     private OrderInfoMapper orderInfoMapper;
+
+    @Autowired
+    private CartInfoMapper cartInfoMapper;
+
+    private final String IS_DELETE_ZERO = "0";
 
     public List<SingleInfo> queryById(Integer id){
         SingleInfoExample example = new SingleInfoExample();
@@ -82,4 +88,77 @@ public class CptsSingleDao {
         orderInfoMapper.insertOrderInfoList(orderInfos);
     }
 
+
+    /**
+     * 查找购物车中信息
+     * @return
+     */
+    public List<CartInfo> queryCartInfoByInfo(CartInfo cartInfo){
+        CartInfoExample example = new CartInfoExample();
+        CartInfoExample.Criteria criteria = example.createCriteria();
+        criteria.andUsernameEqualTo(cartInfo.getUsername());
+        criteria.andIdEqualTo(cartInfo.getId());
+        criteria.andColorEqualTo(cartInfo.getColor());
+        criteria.andSizeEqualTo(cartInfo.getSize());
+        criteria.andIsDeleteEqualTo("0");
+
+       return cartInfoMapper.selectByExample(example);
+    }
+
+    /**
+     * 通过用户名获取有效的购物车信息
+     * @param userName
+     * @return
+     */
+    public List<CartInfo> queryUserCartInfoByUserName(String userName){
+        CartInfoExample example = new CartInfoExample();
+        CartInfoExample.Criteria criteria = example.createCriteria();
+        criteria.andUsernameEqualTo(userName);
+        criteria.andIsDeleteEqualTo("0");
+
+        return cartInfoMapper.selectByExample(example);
+    }
+
+    /**
+     * 新增购物车信息
+     * @param cartInfo
+     */
+    public void insertCartInfo(CartInfo cartInfo){
+        cartInfoMapper.insertSelective(cartInfo);
+    }
+
+    /**
+     * 更新购物车数量信息
+     * @param cartInfo
+     */
+    public void updateCartInfo(CartInfo cartInfo){
+        CartInfoExample example = new CartInfoExample();
+        CartInfoExample.Criteria criteria = example.createCriteria();
+        criteria.andUsernameEqualTo(cartInfo.getUsername());
+        criteria.andIdEqualTo(cartInfo.getId());
+        criteria.andColorEqualTo(cartInfo.getColor());
+        criteria.andSizeEqualTo(cartInfo.getSize());
+
+        cartInfoMapper.updateByExampleSelective(cartInfo, example);
+    }
+
+    /**
+     * 通过商品id获取商品信息
+     * @param id
+     * @return
+     */
+    public ShoeInfo queryShoeInfoById(Integer id){
+        ShoeInfoExample example = new ShoeInfoExample();
+        example.createCriteria().andIdEqualTo(id);
+
+        return shoeInfoMapper.selectByExample(example).get(0);
+    }
+
+    /**
+     * 删除购物车中商品
+     * @param cartInfo
+     */
+    public void deleteCartInfoByInfo( CartInfo cartInfo){
+        cartInfoMapper.deleteByCartInfo(cartInfo);
+    }
 }

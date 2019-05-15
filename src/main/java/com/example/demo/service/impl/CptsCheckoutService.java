@@ -3,15 +3,14 @@ package com.example.demo.service.impl;
 import com.example.demo.dao.common.CommonConstant;
 import com.example.demo.dao.cpts.CptsSingleDao;
 import com.example.demo.dao.exception.MyException;
+import com.example.demo.dao.model.CartInfo;
 import com.example.demo.dao.model.OrderInfo;
 import com.example.demo.dao.model.ShoeInfo;
 import com.example.demo.dao.model.TblSysUser;
 import com.example.demo.dao.model.TblUserOrder;
 import com.example.demo.dao.util.DateUtil;
-import com.example.demo.dao.util.ObjectsTranscoderUtil;
 import com.example.demo.dao.util.SysUtil;
 import com.example.demo.dao.vo.CartInfoVo;
-import com.example.demo.dao.vo.CartRequestParam;
 import com.example.demo.service.ICptsCheckoutService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,10 +19,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import redis.clients.jedis.Jedis;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * @author lbs
@@ -41,12 +41,69 @@ public class CptsCheckoutService implements ICptsCheckoutService {
     private CptsSingleDao cptsSingleDao;
 
     /**
-     * 获取购物车数据
+     *  获取购物车数据
+     * @param userName
+     * @return
+     */
+    public List<CartInfoVo> getCartInfo(String userName) {
+
+        List<CartInfoVo> cartInfoVoList = new ArrayList<>();
+        //通过用户名 获取购物车信息
+        List<CartInfo> cartInfosList = cptsSingleDao.queryUserCartInfoByUserName(userName);
+        CartInfoVo cartInfoVo = null;
+        //如果购物车为空时
+        if(cartInfosList == null || cartInfosList.size() == 0){
+            return null;
+        }
+        for (int i= 0; i < cartInfosList.size(); i++) {
+            CartInfo cartInfo = cartInfosList.get(i);
+            //获取该商品详细信息
+            ShoeInfo shoeInfo = cptsSingleDao.queryShoeInfoById(cartInfosList.get(i).getId());
+
+            cartInfoVo = new CartInfoVo();
+            cartInfoVo.setId(shoeInfo.getId());
+            cartInfoVo.setPrice(shoeInfo.getPrice());
+            cartInfoVo.setImg(shoeInfo.getImg());
+            cartInfoVo.setName(shoeInfo.getName());
+            cartInfoVo.setColor(cartInfo.getColor());
+            cartInfoVo.setSize(cartInfo.getSize());
+            cartInfoVo.setNum(cartInfo.getNum());
+
+            cartInfoVoList.add(cartInfoVo);
+        }
+        return cartInfoVoList;
+    }
+
+    /**
+     * 删除购物车中商品信息
+     * @param id
+     */
+    @Override
+    public void deleteCartInfo(String id, String userName, String color, String size){
+        CartInfo cartInfo = new CartInfo();
+        cartInfo.setId(Integer.parseInt(id));
+        cartInfo.setColor(color);
+        cartInfo.setSize(size);
+        cartInfo.setUsername(userName);
+       /* SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        String format1 = format.format(date);
+        try {
+            cartInfo.setUpdatedate(format.parse(format1));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }*/
+        //删除购物车中商品
+        cptsSingleDao.deleteCartInfoByInfo(cartInfo);
+    }
+
+    /**
+     * 获取购物车数据 redis方案
      * @param userName
      * @return
      * @throws MyException
      */
-    @Override
+  /*  @Override
     public List<CartInfoVo> getCartInfo(String userName) throws MyException{
         List<CartInfoVo> list = new ArrayList<>();
         CartInfoVo cartInfoVo = null;
@@ -84,18 +141,19 @@ public class CptsCheckoutService implements ICptsCheckoutService {
 
         }
         return list;
-    }
+    }*/
+
 
     /**
-     * 删除购物车中商品信息
+     * 删除购物车中商品信息 redis 版本
      * @param id
      */
-    @Override
+   /* @Override
     public void deleteCartInfo(String id, String userName) {
         jedis.connect();
         jedis.hdel(userName, id);
         jedis.close();
-    }
+    }*/
 
     /**
      * 新增订单
@@ -139,15 +197,18 @@ public class CptsCheckoutService implements ICptsCheckoutService {
             orderInfo.setShoeAmount(cartInfo.getNum());
             orderInfo.setShoeColor(cartInfo.getColor());
             orderinfoList.add(orderInfo);
+
+            //逐个删除购物车中的商品
+            deleteCartInfo(cartInfo.getId().toString(), userName,cartInfo.getColor(), cartInfo.getSize());
         }
         cptsSingleDao.insertOrderInfoList(orderinfoList);
 
-        //购物车中商品失效
+       /* //购物车中商品失效
         jedis.connect();
         //删除redis中商品
         for (CartInfoVo cartInfoVo : cartInfos) {
             jedis.hdel(userName.getBytes(), cartInfoVo.getId().toString().getBytes());
         }
-        jedis.close();
+        jedis.close();*/
     }
 }

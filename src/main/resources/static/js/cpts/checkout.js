@@ -78,7 +78,7 @@ function getCartInfo() {
                    '<li style="width: 12%;"><span>'+size+'</span></li>'+
                    '<li style="width: 12%;"><span>'+ num +'</span></li>'+
                    '<li style="width: 12%;"><span style="color: red">$'+ num * price +'</span></li>'+
-                   '<li style="width: 12%;"><div onclick="deleteCartInfo('+id+')" class="close1 close11"> </div></li>'+
+                   '<li style="width: 12%;"><div onclick="deleteCartInfo('+id+','+color+','+size+')" class="close1 close11"> </div></li>'+
                    '<div class="clearfix"> </div></ul>';
            }
            if(object.length > 0){
@@ -95,11 +95,13 @@ function getCartInfo() {
 /**
  * 删除购物车中商品信息
  */
-function deleteCartInfo(id) {
+function deleteCartInfo(id, color, size) {
     console.log(id);
     var dataInfo = {
         id: id,
-        userName: loginUserName
+        userName: loginUserName,
+        color: color,
+        size: size
     }
     $.ajax({
         url: contextPath + "cpts/delectCartInfo",
@@ -128,6 +130,9 @@ function backToHome() {
  */
 function submitOrder() {
     console.log(cartInfoVoList);
+    if(cartInfoVoList == null) {
+        alert("购物车中已无商品，无法执行提交订单操作");
+    }
     //存储购物车中商品
     $.ajax({
         url: contextPath + 'cpts/storageCartInfo?userName=' + loginUserName,
