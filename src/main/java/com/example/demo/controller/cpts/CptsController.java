@@ -1,7 +1,8 @@
 package com.example.demo.controller.cpts;
 
-import com.example.demo.controller.aspect.Log;
-import com.example.demo.controller.aspect.OperationType;
+import com.example.demo.dao.annotation.Log;
+import com.example.demo.dao.Enum.OperationType;
+import com.example.demo.dao.annotation.LoginRequired;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -162,6 +163,16 @@ public class CptsController {
     @RequestMapping(value = "cpts/pay.html", method = RequestMethod.GET)
     public String pay(){
         return "/cpts/pay";
+    }
+
+    /**
+     * 测试注解拦截登录 拦截器
+     * @return
+     */
+    @RequestMapping("/cpts/testLogin")
+    @LoginRequired
+    public String testLogin() {
+        return "测试成功！";
     }
 
 }

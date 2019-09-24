@@ -1,34 +1,20 @@
 package com.example.demo;
 
-import com.example.demo.dao.common.ColorEnum;
-import com.example.demo.dao.common.CommonConstant;
 import com.example.demo.dao.test.MyBean;
 import com.example.demo.dao.test.MyBeanProperties;
-import com.example.demo.dao.util.DateUtil;
-import com.example.demo.dao.util.ObjectsTranscoderUtil;
 import com.example.demo.dao.util.SysUtil;
-import com.example.demo.dao.vo.CartRequestParam;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks;
-import redis.clients.jedis.Jedis;
-
-import javax.persistence.Temporal;
-import java.lang.reflect.Constructor;
 import java.sql.Timestamp;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
-import java.util.logging.ConsoleHandler;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -173,4 +159,25 @@ public class DemoApplicationTests {
 		System.out.println("转换后的时间格式：" + formatDate);
 
 	}
+	@Test
+	public void tantan1(){
+		String a1 = "[\"低蛋白质饮食\",\"低盐饮食\",\"低脂饮食\",\"运动30分钟\"]";
+		String a2 = a1.replace("[", "").replace("]", "")
+				.replace("\"", "");
+		System.out.println(a2);
+	}
+
+	@Test
+	public void testDateTime() {
+		Long dateTime = Long.parseLong("20190715142130");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+			Date date = new Date(dateTime);
+			String format1 = format.format(date);
+			System.out.println(format1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }

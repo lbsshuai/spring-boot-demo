@@ -1,3 +1,4 @@
+/*
 package com.example.demo.controller.login;
 
 import java.io.BufferedInputStream;
@@ -24,17 +25,19 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 
+*/
 /**
  * 文件上传下载
- * 
+ *
  * @author lbs
  * @date 2018年10月8日
- */
+ *//*
+
 @Controller
 public class FileController {
 
 	 private static final Logger logger = LoggerFactory.getLogger(FileController.class);
-	
+
 	// 文件上传相关代码
 	@RequestMapping(value = "upload")
 	@ResponseBody
@@ -67,7 +70,7 @@ public class FileController {
 		}
 		return "上传失败";
 	}
-	
+
 	 //文件下载相关代码
     @RequestMapping("/download")
     public String downloadFile(HttpServletRequest request, HttpServletResponse response){
@@ -149,3 +152,4 @@ public class FileController {
         return "success";
     }
 }
+*/

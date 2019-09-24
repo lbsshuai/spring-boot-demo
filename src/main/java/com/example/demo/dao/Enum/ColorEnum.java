@@ -1,6 +1,4 @@
-package com.example.demo.dao.common;
-
-import org.apache.poi.hssf.util.HSSFColor;
+package com.example.demo.dao.Enum;
 
 /**
  * @author lbs
@@ -40,21 +38,23 @@ public enum ColorEnum {
         this.des = des;
     }
 
-    public String getDesByNum(Integer num){
+    public String getDesByNum(Integer num) {
+        if (num == null) return null;
         for (ColorEnum colorEnum: ColorEnum.values()) {
             if(colorEnum.getNum() == num) {
                 return colorEnum.getDes();
             }
         }
-        return "";
+        throw new IllegalArgumentException("No enum code'"+num+"'."+ ColorEnum.class);
     }
 
     public Integer getNumByDes(String des){
+        if (des == null) return null;
         for (ColorEnum colorEnum: ColorEnum.values()) {
             if (colorEnum.getDes().equals(des)){
                 return colorEnum.getNum();
             }
         }
-        return 0;
+        throw new IllegalArgumentException("No enum value'"+des+"'."+ ColorEnum.class);
     }
 }

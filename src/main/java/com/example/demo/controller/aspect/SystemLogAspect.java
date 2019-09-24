@@ -1,6 +1,7 @@
 package com.example.demo.controller.aspect;
 
-import com.example.demo.controller.cpts.CptsController;
+import com.example.demo.dao.Enum.OperationType;
+import com.example.demo.dao.annotation.Log;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -50,8 +51,8 @@ public class SystemLogAspect {
         if(annotation != null){
             OperationType operationType = annotation.operationType();
             String operationName = annotation.operationName();
-            System.out.println(operationType);
-            System.out.println(operationName);
+            logger.info("operationType:[{}]", operationType);
+            logger.info("operationName:【{}】", operationName);
         }
 
         System.out.println(point);
@@ -59,4 +60,23 @@ public class SystemLogAspect {
         logger.info("-------------------------------controller end-------------------------------------------");
     }
 
+    @Around("controllerAspect()")
+    public void aroundControllerAspect(ProceedingJoinPoint joinPoint) {
+        // 获取方法名称
+        String methodName = joinPoint.getSignature().getName();
+        // 获取入参
+        Object[] params = joinPoint.getArgs();
+        StringBuilder sb = new StringBuilder();
+        for (Object o : params) {
+            sb.append(o + ";");
+        }
+        logger.info("进入["+ methodName +"]方法，参数为：" + sb.toString());
+        //继续执行方法
+        try {
+            joinPoint.proceed();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        logger.info("[{}]方法执行结束", methodName);
+    }
 }
