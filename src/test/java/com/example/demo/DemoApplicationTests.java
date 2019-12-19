@@ -271,4 +271,9 @@ public class DemoApplicationTests {
 		Thread thread = new Thread(threadTest1);
 		thread.start();
 	}
+
+	@Test
+	private void two20191219Test2() {
+		System.out.println("我是20191219Test2");
+	}
 }
