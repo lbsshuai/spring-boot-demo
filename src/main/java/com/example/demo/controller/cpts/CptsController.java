@@ -12,7 +12,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import sun.awt.SunHints;
 
 
 /**
@@ -175,4 +178,10 @@ public class CptsController {
         return "测试成功！";
     }
 
+    @RequestMapping("/cpts/testDemo")
+    @ResponseBody
+    public String testDemo(@RequestParam("name") String name,
+                           @RequestParam("word") String word) {
+        return name + "测试联通成功！" + word;
+    }
 }

@@ -3,6 +3,9 @@ package com.example.demo;
 import com.example.demo.dao.test.MyBean;
 import com.example.demo.dao.test.MyBeanProperties;
 import com.example.demo.dao.util.SysUtil;
+import com.example.demo.restTestmplate.ThreadTest1;
+import com.google.common.collect.HashBasedTable;
+import org.apache.catalina.webresources.war.WarURLConnection;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +15,19 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.sql.Timestamp;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.ConsoleHandler;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -180,4 +193,82 @@ public class DemoApplicationTests {
 		}
 	}
 
+	@Test
+	public  void  testList() {
+		List<String> list = new ArrayList<>();
+		list.add("aaa");
+		list.add("bbb");
+		list.add("ccc");
+		list.add("ddd");
+		list.remove("aaa");
+		System.out.println(list);
+		/*for (String str : list) {
+			if ("aaa".equals(str)) {
+				list.remove("aaa");
+			}
+		}*/
+		Iterator<String> iterator = list.iterator();
+		while (iterator.hasNext()) {
+			String next = iterator.next();
+			System.out.println(next);
+		}
+		HashMap<String, String> map = new HashMap<>();
+		map.put("1","a");
+		map.put("2","b");
+		map.put("3","c");
+		map.put("4","d");
+		map.put(null,"f");
+		HashMap<String, String> map1 = new HashMap<>(map);
+		Set<Map.Entry<String, String>> entries = map1.entrySet();
+		Iterator<Map.Entry<String, String>> iterator1 = entries.iterator();
+		while (iterator1.hasNext()) {
+			Map.Entry<String, String> next = iterator1.next();
+			if (next.getKey() == null){
+				System.out.println("----------------------");
+				System.out.println(next.getKey() + "--" + next.getValue());
+			}
+		}
+
+	}
+
+	@Test
+	public void testHashTable() {
+		Hashtable<String, String> hashtable = new Hashtable<>();
+		hashtable.put("1", "1");
+		hashtable.put("2","2");
+
+		for (Map.Entry<String, String> map : hashtable.entrySet()) {
+			System.out.println(map.getKey() + "" + map.getValue());
+		}
+
+		ConcurrentHashMap<String, String> concurrentHashMap = new ConcurrentHashMap<>();
+		concurrentHashMap.put("1", "1");
+		concurrentHashMap.put("2", "2");
+		Set<Map.Entry<String, String>> entries = concurrentHashMap.entrySet();
+		Iterator<Map.Entry<String, String>> iterator = entries.iterator();
+		while (iterator.hasNext()) {
+			Map.Entry<String, String> next = iterator.next();
+
+			System.out.println(next.getKey() + "-" + next.getValue());
+			System.out.println(next.getKey().hashCode());
+			System.out.println(next.getValue());
+		}
+	}
+
+
+	@Test
+	public void testType() {
+		HashMap<Integer, Integer> hashMap = new HashMap();
+		hashMap.put(1,1);
+		//hashMap.put("--", "22");
+		System.out.println(hashMap.toString());
+
+	}
+
+	@Test
+	public void contextLoads1() {
+		ThreadTest1 threadTest1 = new ThreadTest1();
+		Thread thread = new Thread(threadTest1);
+		thread.start();
+	}
 }

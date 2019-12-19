@@ -12,6 +12,7 @@ import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
 
 /**
+ * 无注解定时任务
  * @author lbs
  * @date 2019/5/9
  */

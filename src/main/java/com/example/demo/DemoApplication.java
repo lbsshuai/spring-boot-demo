@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -21,6 +22,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableTransactionManagement //支持事务注解
 @EnableAsync //支持异步注解
+@EnableScheduling // 支持定时任务
 @MapperScan(basePackages= {"com.example.demo.dao.mapper","com.example.demo.*.mapper"})
 //@PropertySource注解可以一个一个读取配置文件 不能直接使用*.properties操作
 @PropertySource(value = {"classpath:properties/sys.properties",
@@ -32,3 +34,4 @@ public class DemoApplication implements WebMvcConfigurer{
 		SpringApplication.run(DemoApplication.class, args);
 	}
 }
+
