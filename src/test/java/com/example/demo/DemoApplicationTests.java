@@ -271,4 +271,10 @@ public class DemoApplicationTests {
 		Thread thread = new Thread(threadTest1);
 		thread.start();
 	}
+
+	@Test
+	public void one20191219Test1() {
+		System.out.println("我是20191219Test1");
+	}
+
 }
